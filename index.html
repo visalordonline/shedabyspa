@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shedaby Spa — ...the beauty galaxy | Luxury Wellness Sanctuary</title>
+  <meta name="description" content="Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa, Port Harcourt. Massages, facials, body sculpting, and VIP wellness treatments.">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Shedaby Spa — Where Luxury Meets Relaxation">
+  <meta property="og:description" content="Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa. Expert massages, facials, body polish, and VIP care.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ==================== INTERNAL VISIBILITY & LAYOUT FIX ==================== -->
+  <style>
+    /* Prevent elements from remaining hidden */
+    .home-page-main * {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
+
+    .home-preview-section {
+      padding: 90px 0;
+      background-color: #FAF8F5;
+    }
+
+    .home-preview-section.bg-sand {
+      background-color: #F4EFEA;
+    }
+
+    .section-center-head {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .home-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      width: 90%;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .home-feature-card {
+      background: #FFFFFF;
+      border: 1px solid #E5DDD3;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(31, 27, 24, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .home-feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(31, 27, 24, 0.1);
+      border-color: #C5A059;
+    }
+
+    .home-card-img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .home-card-body {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .home-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .home-card-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      color: #1F1B18;
+      font-weight: 700;
+    }
+
+    .home-card-price {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #C5A059;
+    }
+
+    .home-card-desc {
+      font-size: 0.92rem;
+      color: #6E675F;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    /* Primary CTA Button */
+    .btn-action-book {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 13px 20px;
+      background: linear-gradient(135deg, #d3b069 0%, #b89144 100%);
+      color: #FFFFFF !important;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .btn-action-book:hover {
+      background: linear-gradient(135deg, #dfbc77 0%, #c59b4c 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(197, 160, 89, 0.45);
+    }
+
+    /* Outcall & Promo Highlights */
+    .home-callout-banner {
+      width: 90%;
+      max-width: 1240px;
+      margin: 0 auto;
+      background: #1F1B18;
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      border-radius: 18px;
+      padding: 60px 35px;
+      text-align: center;
+      color: #FFFFFF;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .home-callout-banner h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: #FAF8F5;
+      margin-bottom: 14px;
+    }
+
+    .home-callout-banner p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 680px;
+      margin: 0 auto 30px auto;
+      line-height: 1.7;
+    }
+
+    .home-btn-group {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+
+  <!-- ==================== SMARTSUPP LIVE CHAT ==================== -->
+  <script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = 'YOUR_SMARTSUPP_KEY';
+    window.smartsupp||(function(d) {
+      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+      c.type='text/javascript';c.charset='utf-8';c.async=true;
+      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+    })(document);
+  </script>
+</head>
+<body>
+
+  <!-- ==================== STICKY NAVIGATION ==================== -->
+  <header class="header" id="header">
+    <nav class="navbar container">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-sub">...THE BEAUTY GALAXY</span>
+        <span class="brand-title">SHEDABY SPA</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="price.html" class="nav-link">Price</a> </li>
+          <li><a href="appointment.html" class="nav-link">Appointment</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <a href="appointment.html" class="btn btn-primary nav-btn">Book Now</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== MAIN HOME VIEW ==================== -->
+  <main class="home-page-main">
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <div class="hero-trust-tag fade-in">
+          <span>Luxuriate In The Beauty Of Wellness</span>
+        </div>
+        <h1 class="hero-title fade-in">Where Luxury Meets<br><em>Relaxation.</em>[cite: 2]</h1>
+        <p class="hero-desc fade-in">
+          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa[cite: 2]. Escape everyday stresses and let our expert therapists transport you to a world of serenity and beauty[cite: 2].
+        </p>
+        <div class="hero-actions fade-in">
+          <a href="appointment.html" class="btn btn-gold">Book an Appointment</a>
+          <a href="services.html" class="btn btn-outline">Explore All Services</a>
+        </div>
+      </div>
+      <a href="#featured" class="scroll-down-indicator" aria-label="Scroll down">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- 2. POPULAR THERAPY HIGHLIGHTS -->
+    <section class="home-preview-section" id="featured">
+      <div class="container">
+        <div class="section-center-head">
+          <span class="section-subtitle">Celestial Indulgence</span>
+          <h2 class="section-title">Popular Spa Treatments</h2>
+          <p class="section-lead">Explore our most requested restorative therapy sessions, crafted to melt tension and renew your skin[cite: 2].</p>
+        </div>
+
+        <div class="home-highlight-grid">
+          <!-- Deep Tissue -->
+          <div class="home-feature-card">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=700&q=80" alt="Deep Tissue Massage" class="home-card-img" loading="lazy">
+            <div class="home-card-body">
+              <div class="home-card-header">
+                <h3 class="home-card-title">Deep Tissue Massage</h3>
+                <span class="home-card-price">₦30,000</span>[cite: 2]
+              </div>
+              <p class="home-card-desc">Relieves pain and tension in deep muscle layers with targeted myofascial pressure[cite: 2].</p>
+              <a href="appointment.html" class="btn-action-book">Book This Service</a>
+            </div>
+          </div>
+
+          <!-- Swedish Massage -->
+          <div class="home-feature-card">
+            <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=700&q=80" alt="Swedish Massage" class="home-card-img" loading="lazy">
+            <div class="home-card-body">
+              <div class="home-card-header">
+                <h3 class="home-card-title">Swedish Massage</h3>
+                <span class="home-card-price">₦25,000</span>[cite: 2]
+              </div>
+              <p class="home-card-desc">Gentle, relaxing strokes for overall wellness and enhanced natural circulation[cite: 2].</p>
+              <a href="appointment.html" class="btn-action-book">Book This Service</a>
+            </div>
+          </div>
+
+          <!-- Couple Massage -->
+          <div class="home-feature-card">
+            <img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?auto=format&fit=crop&w=700&q=80" alt="Couple Massage" class="home-card-img" loading="lazy">
+            <div class="home-card-body">
+              <div class="home-card-header">
+                <h3 class="home-card-title">Couple Swedish Massage</h3>
+                <span class="home-card-price">₦45,000</span>[cite: 2]
+              </div>
+              <p class="home-card-desc">A shared side-by-side relaxation experience for two individuals in our private suite[cite: 2].</p>
+              <a href="appointment.html" class="btn-action-book">Book This Service</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+          <a href="services.html" class="btn btn-outline-dark" style="padding: 14px 34px; font-weight: 600;">View Complete Service Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. HOME & OFFICE OUTCALL CALLOUT -->
+    <section class="home-preview-section bg-sand">
+      <div class="home-callout-banner">
+        <span class="section-subtitle" style="color: #C5A059;">Direct Mobile Outcall</span>
+        <h2>Spa Luxury at Your Home or Office[cite: 2]</h2>
+        <p>
+          Experience our professional massage sessions in the privacy of your own residence, hotel, or office anywhere across Port Harcourt[cite: 2]. Certified master therapists arrive equipped with clean linens, tables, and organic oils[cite: 2].
+        </p>
+        <div class="home-btn-group">
+          <a href="appointment.html" class="btn btn-gold btn-large">Book Outcall Session</a>
+          <a href="services.html#outcall" class="btn btn-outline btn-large">View Outcall Rates</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CLIENT TESTIMONIAL PREVIEW -->
+    <section class="home-preview-section">
+      <div class="container">
+        <div class="section-center-head">
+          <span class="section-subtitle">Galaxy Experiences</span>
+          <h2 class="section-title">Words from Rejuvenated Guests</h2>
+        </div>
+
+        <div class="home-highlight-grid">
+          <div class="home-feature-card" style="padding: 32px; justify-content: space-between;">
+            <div>
+              <div style="color: #C5A059; font-size: 1.2rem; margin-bottom: 14px;">★★★★★</div>
+              <p style="font-style: italic; color: #3D3731; line-height: 1.7; font-size: 0.95rem;">
+                "The Deep Tissue massage dissolved all the stress built up from my work week. The sauna and hygiene here are truly top tier in Port Harcourt."
+              </p>
+            </div>
+            <div style="margin-top: 20px; font-weight: 600; color: #1F1B18;">
+              — Blessing E., <span style="font-weight: 400; color: #736C65;">GRA, Port Harcourt</span>
+            </div>
+          </div>
+
+          <div class="home-feature-card" style="padding: 32px; justify-content: space-between;">
+            <div>
+              <div style="color: #C5A059; font-size: 1.2rem; margin-bottom: 14px;">★★★★★</div>
+              <p style="font-style: italic; color: #3D3731; line-height: 1.7; font-size: 0.95rem;">
+                "Booked the Couple Hot Stone session for my husband and I. Beautiful ambiance, expert hands, and very polite receptionists. 10/10 recommendation!"
+              </p>
+            </div>
+            <div style="margin-top: 20px; font-weight: 600; color: #1F1B18;">
+              — Kelechi &amp; Oge, <span style="font-weight: 400; color: #736C65;">Peter Odili Road</span>
+            </div>
+          </div>
+
+          <div class="home-feature-card" style="padding: 32px; justify-content: space-between;">
+            <div>
+              <div style="color: #C5A059; font-size: 1.2rem; margin-bottom: 14px;">★★★★★</div>
+              <p style="font-style: italic; color: #3D3731; line-height: 1.7; font-size: 0.95rem;">
+                "Their Home/Office massage outcall service was on time and exceptionally professional. Felt like having a 5-star spa right in my living room."
+              </p>
+            </div>
+            <div style="margin-top: 20px; font-weight: 600; color: #1F1B18;">
+              — Engr. Tamuno, <span style="font-weight: 400; color: #736C65;">Woji, Port Harcourt</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 45px;">
+          <a href="appointment.html" class="btn btn-gold btn-large">Schedule Your Session Now</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <span class="brand-sub">...THE BEAUTY GALAXY</span>
+          <span class="brand-title">SHEDABY SPA</span>
+        </div>
+        <p class="footer-about">
+          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa[cite: 2]. Where luxury meets relaxation[cite: 2].
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Our Oasis</a></li>
+          <li><a href="services.html">All Services</a></li>
+          <li><a href="appointment.html">Book Appointment</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Brochure Highlights</h4>
+        <ul class="footer-links">
+          <li><a href="services.html#massages">Deep Tissue Massage</a></li>
+          <li><a href="services.html#couples">Couple Massage</a></li>
+          <li><a href="services.html#vip">VIP Four Hands &amp; Nuru</a></li>
+          <li><a href="services.html#outcall">Home / Office Outcall</a></li>
+          <li><a href="services.html#grooming">Pedicure &amp; Manicure Combo</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Visit Shedaby Spa</h4>
+        <p class="footer-contact-line">10 Ikegwuru Street Off Mummy B Road, Port Harcourt[cite: 2]</p>
+        <p class="footer-contact-line"><strong>Tel:</strong> 08174605032 / 08139570302[cite: 2]</p>
+        <p class="footer-contact-line"><strong>Email:</strong> info@shedabyspa.com[cite: 2]</p>
+        <p class="footer-contact-line"><strong>Web:</strong> www.shedabyspa.com[cite: 2]</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom container">
+      <p>&copy; <span id="currentYear">2026</span> Shedaby Spa (...the beauty galaxy)[cite: 2]. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Chat Button -->
+  <button class="chat-float" id="smartsuppChatBtn" aria-label="Chat with Shedaby Spa concierge">
+    <svg viewBox="0 0 24 24" class="chat-icon" fill="currentColor">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/>
+    </svg>
+    <span class="chat-float-text">Chat with us</span>
+  </button>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

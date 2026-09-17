@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brochure Price List — Shedaby Spa (...the beauty galaxy)</title>
+  <meta name="description" content="Official price list brochure for Shedaby Spa in Port Harcourt. Transparent rates for massages, body scrubs, facials, waxing, and VIP wellness rituals.">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Brochure Price List — Shedaby Spa">
+  <meta property="og:description" content="Explore our full spa price list and reserve your treatment online.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Header / Navigation Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ==================== INTERNAL CSS (HERO DOWNWARDS) ==================== -->
+  <style>
+    /* Reset visibility to ensure all text and cards render immediately */
+    .pricing-page-main * {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
+
+    /* Hero Banner */
+    .pricing-hero {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(rgba(20, 17, 15, 0.72), rgba(31, 27, 24, 0.85)), 
+                  url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat;
+      color: #FFFFFF;
+      padding: 130px 20px 60px 20px;
+    }
+
+    .pricing-hero-content {
+      max-width: 820px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    .pricing-hero-tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #EEDDBB;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .pricing-hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #FAF8F5;
+      margin-bottom: 16px;
+    }
+
+    .pricing-hero h1 em {
+      font-style: italic;
+      color: #EED49B;
+    }
+
+    .pricing-hero-p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 650px;
+      margin: 0 auto;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* Section Layout */
+    .pricing-section-wrap {
+      padding: 80px 0;
+      background-color: #FAF8F5;
+    }
+
+    .pricing-section-wrap.bg-sand {
+      background-color: #F4EFEA;
+    }
+
+    .pricing-container {
+      width: 90%;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .pricing-head-center {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .pricing-subtitle {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-weight: 600;
+      color: #C5A059;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .pricing-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: #1F1B18;
+      font-weight: 700;
+    }
+
+    .pricing-lead {
+      font-size: 0.95rem;
+      color: #6E675F;
+      max-width: 600px;
+      margin: 10px auto 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Rate Cards Grid */
+    .pricing-grid-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .brochure-card {
+      background: #FFFFFF;
+      border: 1px solid #E5DDD3;
+      border-radius: 14px;
+      padding: 34px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      box-shadow: 0 4px 18px rgba(31, 27, 24, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .brochure-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(31, 27, 24, 0.08);
+      border-color: #C5A059;
+    }
+
+    .brochure-card.featured {
+      border: 2px solid #C5A059;
+      box-shadow: 0 8px 25px rgba(197, 160, 89, 0.15);
+    }
+
+    .brochure-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #C5A059;
+      color: #FFFFFF;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brochure-card-header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .brochure-card-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.65rem;
+      color: #1F1B18;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .brochure-card-desc {
+      font-size: 0.84rem;
+      color: #6E675F;
+    }
+
+    .rates-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 28px 0;
+      flex-grow: 1;
+    }
+
+    .rates-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed #E5DDD3;
+      font-size: 0.92rem;
+      color: #3D3731;
+    }
+
+    .rates-list li:last-child {
+      border-bottom: none;
+    }
+
+    .rates-list strong {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.28rem;
+      color: #1F1B18;
+      white-space: nowrap;
+    }
+
+    /* Visible Booking CTA Button */
+    .btn-book-action {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #d3b069 0%, #b89144 100%);
+      color: #FFFFFF !important;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(197, 160, 89, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .btn-book-action:hover {
+      background: linear-gradient(135deg, #dfbc77 0%, #c59b4c 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+    }
+
+    /* Promo Highlight Banner */
+    .combo-promo-wrap {
+      margin-top: 60px;
+      background: #1F1B18;
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      border-radius: 16px;
+      padding: 50px 30px;
+      text-align: center;
+      color: #FFFFFF;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .combo-promo-wrap h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 3.8vw, 2.8rem);
+      color: #FAF8F5;
+      margin-bottom: 12px;
+    }
+
+    .combo-promo-wrap p {
+      font-size: 0.98rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 650px;
+      margin: 0 auto 24px auto;
+      line-height: 1.7;
+    }
+
+    .combo-price-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.8rem;
+      color: #C5A059;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 24px;
+    }
+  </style>
+
+  <!-- ==================== SMARTSUPP LIVE CHAT ==================== -->
+  <script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = 'YOUR_SMARTSUPP_KEY';
+    window.smartsupp||(function(d) {
+      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+      c.type='text/javascript';c.charset='utf-8';c.async=true;
+      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+    })(document);
+  </script>
+</head>
+<body>
+
+  <!-- ==================== STICKY NAVIGATION ==================== -->
+  <header class="header" id="header">
+    <nav class="navbar container">
+      <a href="index.html#home" class="nav-brand">
+        <span class="brand-sub">...THE BEAUTY GALAXY</span>
+        <span class="brand-title">SHEDABY SPA</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+     <div class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="price.html" class="nav-link">Price</a> </li>
+          <li><a href="appointment.html" class="nav-link">Appointment</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <a href="appointment.html" class="btn btn-primary nav-btn">Book Now</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="pricing-page-main">
+
+    <!-- Hero Banner -->
+    <section class="pricing-hero">
+      <div class="pricing-hero-content">
+        <span class="pricing-hero-tag">Shedaby Spa Brochure</span>
+        <h1>Official <em>Price List.</em></h1>
+        <p class="pricing-hero-p">
+          Transparent, competitive pricing designed for unmatched value and uncompromised luxury in Port Harcourt[cite: 2].
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Pricing Cards Section -->
+    <section class="pricing-section-wrap">
+      <div class="pricing-container">
+        
+        <div class="pricing-head-center">
+          <span class="pricing-subtitle">Investment in Wellness</span>
+          <h2 class="pricing-title">Treatment Menu &amp; Rates</h2>
+          <p class="pricing-lead">All prices correspond directly to our official brochure[cite: 2]. Select any session to reserve your spot.</p>
+        </div>
+
+        <div class="pricing-grid-layout">
+          
+          <!-- 1. Massages (In-Spa) -->
+          <div class="brochure-card featured">
+            <div class="brochure-badge">MOST POPULAR</div>
+            <div class="brochure-card-header">
+              <h3 class="brochure-card-title">In-Spa Bodywork</h3>
+              <p class="brochure-card-desc">Restorative &amp; deep muscular relief</p>
+            </div>
+            <ul class="rates-list">
+              <li><span>Swedish Massage</span><strong>₦25,000</strong></li>[cite: 2]
+              <li><span>Aromatherapy Massage</span><strong>₦25,000</strong></li>[cite: 2]
+              <li><span>Deep Tissue Massage</span><strong>₦30,000</strong></li>[cite: 2]
+              <li><span>Hot Stone Massage</span><strong>₦35,000</strong></li>[cite: 2]
+            </ul>
+            <a href="appointment.html" class="btn-book-action">Book This Service</a>
+          </div>
+
+          <!-- 2. Reflexology & Targeted -->
+          <div class="brochure-card">
+            <div class="brochure-card-header">
+              <h3 class="brochure-card-title">Reflexology &amp; Targeted</h3>
+              <p class="brochure-card-desc">Specific pain &amp; tension relief</p>
+            </div>
+            <ul class="rates-list">
+              <li><span>Back Massage</span><strong>₦15,000</strong></li>[cite: 2]
+              <li><span>Head Massage (Scalp &amp; Neck)</span><strong>₦8,000</strong></li>[cite: 2]
+              <li><span>Leg Massage (Circulation)</span><strong>₦7,000</strong></li>[cite: 2]
+            </ul>
+            <a href="appointment.html" class="btn-book-action">Book This Service</a>
+          </div>
+
+          <!-- 3. Couple Massages -->
+          <div class="brochure-card">
+            <div class="brochure-card-header">
+              <h3 class="brochure-card-title">Couple Massages</h3>
+              <p class="brochure-card-desc">Shared tranquility experience for two</p>
+            </div>
+            <ul class="rates-list">
+              <li><span>Swedish Couple</span><strong>₦45,000</strong></li>[cite: 2]
+              <li><span>Aromatherapy Couple</span><strong>₦45,000</strong></li>[cite: 2]
+              <li><span>Hot Stone Couple</span><strong>₦50,000</strong></li>[cite: 2]
+              <li><span>Deep Tissue Couple</span><strong>₦50,000</strong></li>[cite: 2]
+            </ul>
+            <a href="appointment.html" class="btn-book-action">Book This Service</a>
+          </div>
+
+          <!-- 4. VIP Massages -->
+          <div class="brochure-card">
+            <div class="brochure-card-header">
+              <h3 class="brochure-card-title">VIP &amp; Sensual</h3>
+              <p class="brochure-card-desc">Heightened relaxation &amp; care</p>
+            </div>
+            <ul class="rates-list">
+              <li><span>Four Hands Massage (2 Therapists)</span><strong>₦45,000</strong></li>[cite: 2]
+              <li><span>Erotic Massage</span><strong>₦50,000</strong></li>[cite: 2]
+              <li><span>Nuru Massage (Japanese style)</span><strong>₦60,000</strong></li>[cite: 2]
+            </ul>
+            <a href="appointment.html" class="btn-book-action">Book This Service</a>
+          </div>
+
+          <!-- 5. Home / Office Outcall -->
+          <div class="brochure-card">
+            <div class="brochure-card-header">
+              <h3 class="brochure-card-title">Home / Office Service</h3>
+              <p class="brochure-card-desc">Mobile massage delivered to your door</p>
+            </div>
+            <ul class="rates-list">
+              <li><span>Swedish / Deep Tissue Outcall</span><strong>₦50,000</strong></li>[cite: 2]
+              <li><span>Aromatherapy / Hot Stone Outcall</span><strong>₦50,000</strong></li>[cite: 2]
+              <li><span>Erotic Outcall</span><strong>₦70,000</strong></li>[cite: 2]
+              <li><span>Nuru Outcall</span><strong>₦80,000</strong></li>[cite: 2]
+            </ul>
+            <a href="appointment.html" class="btn-book-action">Book This Service</a>
+          </div>
+
+          <!-- 6. Facials -->
+          <div class="brochure-card">
+            <div class="brochure-card-header">
+              <h3 class="brochure-card-title">Aesthetic Facials</h3>
+              <p class="brochure-card-desc">Pore refinement &amp; healthy glow</p>
+            </div>
+            <ul class="rates-list">
+              <li><span>Regular Facial</span><strong>₦25,000</strong></li>[cite: 2]
+              <li><span>Organic Facial</span><strong>₦30,000</strong></li>[cite: 2]
+              <li><span>Acne / Dermaplaning / LED</span><strong>₦35,000</strong></li>[cite: 2]
+              <li><span>Anti-Aging Facial</span><strong>₦40,000</strong></li>[cite: 2]
+            </ul>
+            <a href="appointment.html" class="btn-book-action">Book This Service</a>
+          </div>
+
+          <!-- 7. Scrubs, Polish & Steam -->
+          <div class="brochure-card">
+            <div class="brochure-card-header">
+              <h3 class="brochure-card-title">Scrub, Polish &amp; Steam</h3>
+              <p class="brochure-card-desc">Thermal detox &amp; body exfoliation</p>
+            </div>
+            <ul class="rates-list">
+              <li><span>Organic Body Scrub</span><strong>₦30,000</strong></li>[cite: 2]
+              <li><span>Sugar Body Scrub</span><strong>₦35,000</strong></li>[cite: 2]
+              <li><span>Sauna / Body Steam</span><strong>₦8,000</strong></li>[cite: 2]
+              <li><span>V Steam</span><strong>₦10,000</strong></li>[cite: 2]
+            </ul>
+            <a href="appointment.html" class="btn-book-action">Book This Service</a>
+          </div>
+
+          <!-- 8. Sculpting & Waxing -->
+          <div class="brochure-card">
+            <div class="brochure-card-header">
+              <h3 class="brochure-card-title">Sculpting &amp; Waxing</h3>
+              <p class="brochure-card-desc">Body contouring &amp; hair removal</p>
+            </div>
+            <ul class="rates-list">
+              <li><span>Belly Fat Reduction / Butt Lift</span><strong>₦30,000</strong></li>[cite: 2]
+              <li><span>Breast Enhancement</span><strong>₦20,000</strong></li>[cite: 2]
+              <li><span>Arm Fat Reduction</span><strong>₦15,000</strong></li>[cite: 2]
+              <li><span>Full Body Wax / Brazilian</span><strong>₦45,000 / ₦20,000</strong></li>[cite: 2]
+            </ul>
+            <a href="appointment.html" class="btn-book-action">Book This Service</a>
+          </div>
+
+          <!-- 9. Brows, Lashes & Nails -->
+          <div class="brochure-card">
+            <div class="brochure-card-header">
+              <h3 class="brochure-card-title">Brows, Lashes &amp; Nails</h3>
+              <p class="brochure-card-desc">Finishing aesthetic embellishments</p>
+            </div>
+            <ul class="rates-list">
+              <li><span>Microblading / Ombré Shading</span><strong>₦30,000 / ₦35,000</strong></li>[cite: 2]
+              <li><span>Semi-Permanent Lashes</span><strong>From ₦12,000</strong></li>[cite: 2]
+              <li><span>Pedicure &amp; Manicure Combined</span><strong>₦30,000</strong></li>[cite: 2]
+              <li><span>Pedicure (₦8k) / Manicure (₦5k) / Gel</span><strong>₦3,000</strong></li>[cite: 2]
+            </ul>
+            <a href="appointment.html" class="btn-book-action">Book This Service</a>
+          </div>
+
+        </div>
+
+        <!-- Featured Combo Banner -->
+        <div class="combo-promo-wrap">
+          <span class="pricing-subtitle" style="color: #C5A059;">SPECIAL COMBINATION</span>
+          <h2>Pedicure &amp; Manicure Ultimate Care</h2>
+          <p>
+            Stimulates collagen production, cleanses dead cells, and provides full restorative hydration to both hands and feet with precision nail shaping[cite: 2].
+          </p>
+          <span class="combo-price-text">₦30,000</span>[cite: 2]
+          <a href="appointment.html" class="btn-book-action" style="max-width: 280px; margin: 0 auto;">Reserve This Package</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <span class="brand-sub">...THE BEAUTY GALAXY</span>
+          <span class="brand-title">SHEDABY SPA</span>
+        </div>
+        <p class="footer-about">
+          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa[cite: 2]. Where luxury meets relaxation[cite: 2].
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="about.html">About Our Oasis</a></li>
+          <li><a href="services.html">All Services</a></li>
+          <li><a href="pricing.html">Brochure Price List</a></li>
+          <li><a href="appointment.html">Book Appointment</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Brochure Highlights</h4>
+        <ul class="footer-links">
+          <li><a href="services.html#massages">Deep Tissue Massage</a></li>
+          <li><a href="services.html#couples">Couple Massage</a></li>
+          <li><a href="services.html#vip">VIP Four Hands &amp; Nuru</a></li>
+          <li><a href="services.html#outcall">Home / Office Outcall</a></li>
+          <li><a href="services.html#grooming">Pedicure &amp; Manicure Combo</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Visit Shedaby Spa</h4>
+        <p class="footer-contact-line">10 Ikegwuru Street Off Mummy B Road, Port Harcourt[cite: 2]</p>
+        <p class="footer-contact-line"><strong>Tel:</strong> 08174605032 / 08139570302[cite: 2]</p>
+        <p class="footer-contact-line"><strong>Email:</strong> info@shedabyspa.com[cite: 2]</p>
+        <p class="footer-contact-line"><strong>Web:</strong> www.shedabyspa.com[cite: 2]</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom container">
+      <p>&copy; <span id="currentYear">2026</span> Shedaby Spa (...the beauty galaxy)[cite: 2]. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Chat Button -->
+  <button class="chat-float" id="smartsuppChatBtn" aria-label="Chat with Shedaby Spa concierge">
+    <svg viewBox="0 0 24 24" class="chat-icon" fill="currentColor">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/>
+    </svg>
+    <span class="chat-float-text">Chat with us</span>
+  </button>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
