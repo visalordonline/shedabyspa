@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Header / Navigation Stylesheet -->
@@ -39,7 +39,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: linear-gradient(rgba(20, 17, 15, 0.75), rgba(31, 27, 24, 0.88)), 
+      background: linear-gradient(rgba(35, 8, 30, 0.75), rgba(20, 5, 18, 0.88)), 
                   url('https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat;
       color: #FFFFFF;
       padding: 120px 20px 50px 20px;
@@ -56,13 +56,13 @@
       font-size: 0.82rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: #EEDDBB;
+      color: var(--color-gold);
       margin-bottom: 12px;
       font-weight: 600;
     }
 
     .booking-hero h1 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-family: var(--font-serif);
       font-size: clamp(2rem, 5vw, 3.8rem);
       font-weight: 600;
       line-height: 1.15;
@@ -72,7 +72,7 @@
 
     .booking-hero h1 em {
       font-style: italic;
-      color: #EED49B;
+      color: var(--color-gold);
     }
 
     .booking-hero-p {
@@ -87,18 +87,20 @@
     /* Booking Form Layout */
     .booking-section-wrapper {
       padding: 60px 0 80px 0;
-      background-color: #FAF8F5;
+      background-color: var(--color-bg-light);
       overflow-x: hidden;
+      transition: background-color var(--transition);
     }
 
     .booking-card-container {
       width: min(92%, 960px);
       margin: 0 auto;
-      background: #FFFFFF;
-      border: 1px solid #E5DDD3;
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
       border-radius: 16px;
       padding: 45px 35px;
-      box-shadow: 0 8px 30px rgba(31, 27, 24, 0.06);
+      box-shadow: var(--shadow-medium);
+      transition: background-color var(--transition), border-color var(--transition);
     }
 
     .booking-card-header {
@@ -107,16 +109,16 @@
     }
 
     .booking-card-header h2 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-family: var(--font-serif);
       font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-      color: #1F1B18;
+      color: var(--color-heading);
       margin-bottom: 8px;
       font-weight: 700;
     }
 
     .booking-card-header p {
       font-size: 0.92rem;
-      color: #6E675F;
+      color: var(--color-text-muted);
       max-width: 580px;
       margin: 0 auto;
       line-height: 1.6;
@@ -154,7 +156,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      min-width: 0; /* Prevents input overflow */
+      min-width: 0;
     }
 
     .booking-field-group.full-width {
@@ -166,11 +168,11 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       margin-bottom: 6px;
-      color: #1F1B18;
+      color: var(--color-heading);
     }
 
     .booking-field-group label span.required {
-      color: #AF8B45;
+      color: var(--color-gold);
     }
 
     .booking-field-group input,
@@ -180,20 +182,20 @@
       min-width: 0;
       max-width: 100%;
       padding: 12px 14px;
-      border: 1px solid #E5DDD3;
+      border: 1px solid var(--color-border);
       border-radius: 6px;
-      background: #FAF8F5;
+      background: var(--color-bg-light);
       font-family: inherit;
       font-size: 0.9rem;
-      color: #1F1B18;
+      color: var(--color-text);
       outline: none;
-      transition: all 0.2s ease;
+      transition: border-color 0.2s ease, background-color var(--transition), color var(--transition);
       -webkit-appearance: none;
       appearance: none;
     }
 
     .booking-field-group select {
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23736C65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a53792' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
       background-repeat: no-repeat;
       background-position: right 14px center;
       background-size: 15px;
@@ -201,7 +203,7 @@
     }
 
     .booking-field-group input[type="date"] {
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23736C65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3e%3c/rect%3e%3cline x1='16' y1='2' x2='16' y2='6'%3e%3c/line%3e%3cline x1='8' y1='2' x2='8' y2='6'%3e%3c/line%3e%3cline x1='3' y1='10' x2='21' y2='10'%3e%3c/line%3e%3c/svg%3e");
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a53792' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3e%3c/rect%3e%3cline x1='16' y1='2' x2='16' y2='6'%3e%3c/line%3e%3cline x1='8' y1='2' x2='8' y2='6'%3e%3c/line%3e%3cline x1='3' y1='10' x2='21' y2='10'%3e%3c/line%3e%3c/svg%3e");
       background-repeat: no-repeat;
       background-position: right 14px center;
       background-size: 16px;
@@ -211,14 +213,14 @@
     .booking-field-group input:focus,
     .booking-field-group select:focus,
     .booking-field-group textarea:focus {
-      border-color: #C5A059;
-      background-color: #FFFFFF;
-      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+      border-color: var(--color-primary);
+      background-color: var(--color-card-bg);
+      box-shadow: 0 0 0 3px rgba(165, 55, 146, 0.15);
     }
 
     .error-msg {
       font-size: 0.75rem;
-      color: #B94A48;
+      color: var(--color-error);
       margin-top: 4px;
       min-height: 16px;
     }
@@ -226,8 +228,8 @@
     /* Price Preview Box */
     .price-banner-box {
       grid-column: 1 / -1;
-      background: #F4EFEA;
-      border: 1px dashed #C5A059;
+      background: var(--color-bg-sand);
+      border: 1px dashed var(--color-gold);
       padding: 16px 20px;
       border-radius: 8px;
       display: flex;
@@ -243,14 +245,14 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #6E675F;
+      color: var(--color-text-muted);
     }
 
     .price-banner-value {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-family: var(--font-serif);
       font-size: clamp(1.4rem, 4vw, 1.8rem);
       font-weight: 700;
-      color: #1F1B18;
+      color: var(--color-primary-light);
     }
 
     /* Terms & Submit */
@@ -267,13 +269,13 @@
       height: 18px;
       margin-top: 2px;
       flex-shrink: 0;
-      accent-color: #C5A059;
+      accent-color: var(--color-primary);
       cursor: pointer;
     }
 
     .terms-row label {
       font-size: 0.82rem;
-      color: #6E675F;
+      color: var(--color-text-muted);
       cursor: pointer;
       line-height: 1.5;
     }
@@ -296,7 +298,7 @@
 
     .submit-helper-note {
       font-size: 0.78rem;
-      color: #736C65;
+      color: var(--color-text-muted);
       margin-top: 10px;
     }
 
@@ -310,33 +312,56 @@
     }
 
     .perk-box {
-      background: #FFFFFF;
-      border: 1px solid #E5DDD3;
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
       border-radius: 8px;
       padding: 18px;
       display: flex;
       align-items: center;
       gap: 12px;
+      transition: background-color var(--transition), border-color var(--transition);
     }
 
     .perk-icon {
       font-size: 1.4rem;
-      color: #C5A059;
+      color: var(--color-gold);
       flex-shrink: 0;
     }
 
     .perk-text h4 {
       font-size: 0.88rem;
       font-weight: 600;
-      color: #1F1B18;
+      color: var(--color-heading);
       margin-bottom: 2px;
     }
 
     .perk-text p {
       font-size: 0.76rem;
-      color: #6E675F;
+      color: var(--color-text-muted);
       line-height: 1.35;
       margin: 0;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-toggle-bg);
+      border: 1px solid var(--color-border);
+      color: var(--color-gold);
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-left: 8px;
+    }
+
+    .theme-toggle-btn:hover {
+      transform: rotate(15deg) scale(1.08);
+      border-color: var(--color-gold);
     }
 
     /* ==================== SCREEN SIZE BREAKPOINTS ==================== */
@@ -346,7 +371,7 @@
       }
 
       .form-grid-layout {
-        grid-template-columns: 1fr; /* Full single-column for all mobile devices */
+        grid-template-columns: 1fr;
         gap: 16px;
       }
 
@@ -382,7 +407,7 @@
       .booking-field-group input,
       .booking-field-group select,
       .booking-field-group textarea {
-        font-size: 16px; /* Prevents auto-zoom on iOS */
+        font-size: 16px;
         padding: 11px 12px;
       }
 
@@ -393,7 +418,7 @@
     }
   </style>
 
-  <!-- ==================== SMARTSUPP LIVE CHAT ==================== -->
+  <!-- Smartsupp Live Chat -->
   <script type="text/javascript">
     var _smartsupp = _smartsupp || {};
     _smartsupp.key = '5832cf1777d6371d327291ecdb099331b2563787';
@@ -411,7 +436,7 @@
   <!-- ==================== STICKY NAVIGATION ==================== -->
   <header class="header" id="header">
     <nav class="navbar container">
-      <a href="index.html#home" class="nav-brand">
+      <a href="index.html" class="nav-brand">
         <span class="brand-sub">...THE BEAUTY GALAXY</span>
         <span class="brand-title">SHEDABY SPA</span>
       </a>
@@ -426,11 +451,16 @@
         <ul class="nav-list">
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="pricing.html" class="nav-link">Price List</a></li>
+          <li><a href="price.html" class="nav-link">Price</a></li>
           <li><a href="appointment.html" class="nav-link active">Appointment</a></li>
           <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
-        <a href="appointment.html" class="btn btn-primary nav-btn">Book Now</a>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <a href="appointment.html" class="btn btn-gold nav-btn">Book Now</a>
+          <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Light and Dark Mode">
+            <span id="themeIcon">🌙</span>
+          </button>
+        </div>
       </div>
     </nav>
   </header>
@@ -444,7 +474,7 @@
         <span class="booking-hero-tag">Celestial Sanctuary</span>
         <h1>Reserve Your <em>Wellness Journey.</em></h1>
         <p class="booking-hero-p">
-          Select your desired massage therapy, facial, or body contouring treatment from our brochure menu[cite: 2]. Our master therapists will prepare your private sanctuary suite.
+          Select your desired massage therapy, facial, or body contouring treatment from our brochure menu[cite: 8]. Our master therapists will prepare your private sanctuary suite[cite: 8].
         </p>
       </div>
     </section>
@@ -455,7 +485,7 @@
         
         <div class="booking-card-header">
           <h2>Appointment Reservation</h2>
-          <p>Complete your session preferences below for real-time concierge synchronization.</p>
+          <p>Complete your session preferences below for real-time concierge synchronization[cite: 8].</p>
         </div>
 
         <!-- Dynamic Success/Error Alert -->
@@ -641,7 +671,7 @@
             <div class="terms-row">
               <input type="checkbox" id="termsCheck" name="termsCheck" required>
               <label for="termsCheck">
-                I agree to Shedaby Spa appointment scheduling policies and hygiene guidelines[cite: 2].
+                I agree to Shedaby Spa appointment scheduling policies and hygiene guidelines[cite: 8].
               </label>
             </div>
             <div class="error-msg" id="termsError" style="grid-column: 1 / -1;"></div>
@@ -651,7 +681,7 @@
               <button type="submit" class="btn btn-gold" id="submitBtn">
                 <span>Confirm Shedaby Reservation</span>
               </button>
-              <p class="submit-helper-note">Instant booking synchronization directly to our concierge team.</p>
+              <p class="submit-helper-note">Instant booking synchronization directly to our concierge team[cite: 8].</p>
             </div>
 
           </div>
@@ -664,21 +694,21 @@
           <div class="perk-icon">🧖‍♀️</div>
           <div class="perk-text">
             <h4>Luxury Amenities</h4>
-            <p>Sauna, steam room & relaxation lounge[cite: 2].</p>
+            <p>Sauna, steam room & relaxation lounge[cite: 8].</p>
           </div>
         </div>
         <div class="perk-box">
           <div class="perk-icon">🌿</div>
           <div class="perk-text">
             <h4>Quality Products</h4>
-            <p>Organic botanicals & fine clinical extracts[cite: 2].</p>
+            <p>Organic botanicals & fine clinical extracts[cite: 8].</p>
           </div>
         </div>
         <div class="perk-box">
           <div class="perk-icon">🚗</div>
           <div class="perk-text">
             <h4>Outcall Available</h4>
-            <p>Direct therapy at your home or office[cite: 2].</p>
+            <p>Direct therapy at your home or office[cite: 8].</p>
           </div>
         </div>
       </div>
@@ -695,7 +725,7 @@
           <span class="brand-title">SHEDABY SPA</span>
         </div>
         <p class="footer-about">
-          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa[cite: 2]. Where luxury meets relaxation[cite: 2].
+          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa[cite: 8]. Where luxury meets relaxation[cite: 8].
         </p>
       </div>
 
@@ -704,7 +734,7 @@
         <ul class="footer-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Our Oasis</a></li>
-          <li><a href="pricing.html">Price List</a></li>
+          <li><a href="price.html">Price List</a></li>
           <li><a href="appointment.html">Book Appointment</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
@@ -713,25 +743,25 @@
       <div class="footer-col">
         <h4 class="footer-title">Brochure Highlights</h4>
         <ul class="footer-links">
-          <li><a href="pricing.html">Deep Tissue Massage</a></li>
-          <li><a href="pricing.html">Couple Massage</a></li>
-          <li><a href="pricing.html">VIP Four Hands & Nuru</a></li>
-          <li><a href="pricing.html">Home / Office Outcall</a></li>
-          <li><a href="pricing.html">Pedicure & Manicure Combo</a></li>
+          <li><a href="price.html">Deep Tissue Massage</a></li>
+          <li><a href="price.html">Couple Massage</a></li>
+          <li><a href="price.html">VIP Four Hands & Nuru</a></li>
+          <li><a href="price.html">Home / Office Outcall</a></li>
+          <li><a href="price.html">Pedicure & Manicure Combo</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4 class="footer-title">Visit Shedaby Spa</h4>
-        <p class="footer-contact-line">10 Ikegwuru Street Off Mummy B Road, Port Harcourt[cite: 2]</p>
-        <p class="footer-contact-line"><strong>Tel:</strong> 08174605032 / 08139570302[cite: 2]</p>
-        <p class="footer-contact-line"><strong>Email:</strong> info@shedabyspa.com[cite: 2]</p>
-        <p class="footer-contact-line"><strong>Web:</strong> www.shedabyspa.com[cite: 2]</p>
+        <p class="footer-contact-line">10 Ikegwuru Street Off Mummy B Road, Port Harcourt[cite: 8]</p>
+        <p class="footer-contact-line"><strong>Tel:</strong> 08174605032 / 08139570302[cite: 8]</p>
+        <p class="footer-contact-line"><strong>Email:</strong> info@shedabyspa.com[cite: 8]</p>
+        <p class="footer-contact-line"><strong>Web:</strong> www.shedabyspa.com[cite: 8]</p>
       </div>
     </div>
 
     <div class="footer-bottom container">
-      <p>&copy; <span id="currentYear">2026</span> Shedaby Spa (...the beauty galaxy)[cite: 2]. All Rights Reserved.</p>
+      <p>&copy; <span id="currentYear">2026</span> Shedaby Spa (...the beauty galaxy)[cite: 8]. All Rights Reserved.</p>
     </div>
   </footer>
 

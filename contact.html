@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,13 +15,13 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Header / Navigation Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- ==================== INTERNAL CSS (HERO DOWNWARDS) ==================== -->
+  <!-- ==================== INTERNAL CSS ==================== -->
   <style>
     /* Reset visibility to prevent hidden text or container bugs */
     .contact-page-main * {
@@ -38,7 +38,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: linear-gradient(rgba(20, 17, 15, 0.72), rgba(31, 27, 24, 0.85)), 
+      background: linear-gradient(rgba(35, 8, 30, 0.72), rgba(20, 5, 18, 0.85)), 
                   url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat;
       color: #FFFFFF;
       padding: 130px 20px 60px 20px;
@@ -55,13 +55,13 @@
       font-size: 0.82rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: #EEDDBB;
+      color: var(--color-gold);
       margin-bottom: 14px;
       font-weight: 600;
     }
 
     .contact-hero h1 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-family: var(--font-serif);
       font-size: clamp(2.4rem, 5vw, 4rem);
       font-weight: 600;
       line-height: 1.15;
@@ -71,7 +71,7 @@
 
     .contact-hero h1 em {
       font-style: italic;
-      color: #EED49B;
+      color: var(--color-gold);
     }
 
     .contact-hero-p {
@@ -86,7 +86,8 @@
     /* Contact Section Layout */
     .contact-section-wrapper {
       padding: 80px 0;
-      background-color: #FAF8F5;
+      background-color: var(--color-bg-light);
+      transition: background-color var(--transition);
     }
 
     .contact-container {
@@ -109,28 +110,28 @@
     }
 
     .info-card {
-      background: #FFFFFF;
-      border: 1px solid #E5DDD3;
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
       border-radius: 12px;
       padding: 24px;
       display: flex;
       align-items: flex-start;
       gap: 18px;
-      box-shadow: 0 4px 18px rgba(31, 27, 24, 0.04);
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      box-shadow: var(--shadow-subtle);
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color var(--transition);
     }
 
     .info-card:hover {
       transform: translateY(-3px);
-      border-color: #C5A059;
+      border-color: var(--color-primary);
     }
 
     .info-icon-box {
       width: 46px;
       height: 46px;
       border-radius: 50%;
-      background: rgba(197, 160, 89, 0.15);
-      color: #9E7D3B;
+      background: rgba(165, 55, 146, 0.12);
+      color: var(--color-gold);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -139,59 +140,61 @@
     }
 
     .info-details h3 {
-      font-family: 'Montserrat', sans-serif;
+      font-family: var(--font-sans);
       font-size: 1rem;
       font-weight: 600;
-      color: #1F1B18;
+      color: var(--color-heading);
       margin-bottom: 6px;
     }
 
     .info-details p {
       font-size: 0.9rem;
-      color: #6E675F;
+      color: var(--color-text-muted);
       line-height: 1.6;
       margin: 0;
     }
 
     .info-details a {
-      color: #9E7D3B;
+      color: var(--color-primary-light);
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       transition: color 0.2s ease;
     }
 
     .info-details a:hover {
-      color: #1F1B18;
+      color: var(--color-gold);
     }
 
     /* Map Box */
     .contact-map-box {
-      background: #FFFFFF;
-      border: 1px solid #E5DDD3;
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(31, 27, 24, 0.06);
+      box-shadow: var(--shadow-medium);
       display: flex;
       flex-direction: column;
       min-height: 480px;
+      transition: background-color var(--transition), border-color var(--transition);
     }
 
     .map-header {
       padding: 24px;
-      background: #F4EFEA;
-      border-bottom: 1px solid #E5DDD3;
+      background: var(--color-bg-sand);
+      border-bottom: 1px solid var(--color-border);
+      transition: background-color var(--transition);
     }
 
     .map-header h3 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-family: var(--font-serif);
       font-size: 1.6rem;
-      color: #1F1B18;
+      color: var(--color-heading);
       margin-bottom: 4px;
     }
 
     .map-header p {
       font-size: 0.85rem;
-      color: #6E675F;
+      color: var(--color-text-muted);
       margin: 0;
     }
 
@@ -213,16 +216,17 @@
     /* Quick Concierge CTA */
     .contact-quick-cta {
       margin-top: 50px;
-      background: #1F1B18;
+      background: var(--color-banner-bg);
       color: #FFFFFF;
       border-radius: 16px;
       padding: 40px;
       text-align: center;
-      border: 1px solid rgba(197, 160, 89, 0.3);
+      border: 1px solid var(--color-banner-border);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
     }
 
     .contact-quick-cta h3 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-family: var(--font-serif);
       font-size: 2.2rem;
       color: #FAF8F5;
       margin-bottom: 10px;
@@ -230,7 +234,7 @@
 
     .contact-quick-cta p {
       font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.88);
       max-width: 600px;
       margin: 0 auto 24px auto;
       line-height: 1.6;
@@ -241,6 +245,28 @@
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-toggle-bg);
+      border: 1px solid var(--color-border);
+      color: var(--color-gold);
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-left: 8px;
+    }
+
+    .theme-toggle-btn:hover {
+      transform: rotate(15deg) scale(1.08);
+      border-color: var(--color-gold);
     }
 
     @media (max-width: 992px) {
@@ -254,10 +280,10 @@
     }
   </style>
 
-  <!-- ==================== SMARTSUPP LIVE CHAT ==================== -->
+  <!-- Smartsupp Live Chat -->
   <script type="text/javascript">
     var _smartsupp = _smartsupp || {};
-    _smartsupp.key = 'YOUR_SMARTSUPP_KEY';
+    _smartsupp.key = '5832cf1777d6371d327291ecdb099331b2563787';
     window.smartsupp||(function(d) {
       var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
       s=d.getElementsByTagName('script')[0];c=d.createElement('script');
@@ -271,7 +297,7 @@
   <!-- ==================== STICKY NAVIGATION ==================== -->
   <header class="header" id="header">
     <nav class="navbar container">
-      <a href="index.html#home" class="nav-brand">
+      <a href="index.html" class="nav-brand">
         <span class="brand-sub">...THE BEAUTY GALAXY</span>
         <span class="brand-title">SHEDABY SPA</span>
       </a>
@@ -284,13 +310,18 @@
 
       <div class="nav-menu" id="navMenu">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="price.html" class="nav-link">Price</a> </li>
+          <li><a href="price.html" class="nav-link">Price</a></li>
           <li><a href="appointment.html" class="nav-link">Appointment</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
         </ul>
-        <a href="appointment.html" class="btn btn-primary nav-btn">Book Now</a>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <a href="appointment.html" class="btn btn-gold nav-btn">Book Now</a>
+          <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Light and Dark Mode">
+            <span id="themeIcon">🌙</span>
+          </button>
+        </div>
       </div>
     </nav>
   </header>
@@ -304,7 +335,7 @@
         <span class="contact-hero-tag">We Are Here For You</span>
         <h1>Get in Touch with <em>Our Concierge.</em></h1>
         <p class="contact-hero-p">
-          Have inquiries regarding our treatments, outcall reservations, or directions to our sanctuary? Reach out to our team at any time.
+          Have inquiries regarding our treatments, outcall reservations, or directions to our sanctuary? Reach out to our team at any time[cite: 9].
         </p>
       </div>
     </section>
@@ -322,7 +353,7 @@
               <div class="info-icon-box">📍</div>
               <div class="info-details">
                 <h3>Our Sanctuary Location</h3>
-                <p>10 Ikegwuru Street Off Mummy B Road, Port Harcourt 500272, Rivers State, Nigeria.</p>
+                <p>10 Ikegwuru Street Off Mummy B Road, Port Harcourt 500272, Rivers State, Nigeria[cite: 9].</p>
               </div>
             </div>
 
@@ -330,8 +361,8 @@
               <div class="info-icon-box">📞</div>
               <div class="info-details">
                 <h3>Direct Telephone Lines</h3>
-                <p><a href="tel:08174605032">08174605032</a></p>
-                <p><a href="tel:08139570302">08139570302</a></p>
+                <p><a href="tel:08174605032">08174605032</a>[cite: 9]</p>
+                <p><a href="tel:08139570302">08139570302</a>[cite: 9]</p>
               </div>
             </div>
 
@@ -339,8 +370,8 @@
               <div class="info-icon-box">✉️</div>
               <div class="info-details">
                 <h3>Electronic Mail &amp; Web</h3>
-                <p><a href="mailto:info@shedabyspa.com">info@shedabyspa.com</a></p>
-                <p><a href="https://www.shedabyspa.com" target="_blank" rel="noopener">www.shedabyspa.com</a></p>
+                <p><a href="mailto:info@shedabyspa.com">info@shedabyspa.com</a>[cite: 9]</p>
+                <p><a href="https://www.shedabyspa.com" target="_blank" rel="noopener">www.shedabyspa.com</a>[cite: 9]</p>
               </div>
             </div>
 
@@ -348,8 +379,8 @@
               <div class="info-icon-box">🕒</div>
               <div class="info-details">
                 <h3>Spa Hours of Operation</h3>
-                <p><strong>Monday – Saturday:</strong> 9:00 AM – 8:00 PM</p>
-                <p><strong>Sunday:</strong> 12:00 PM – 7:00 PM (Flexible Appointment Hours)</p>
+                <p><strong>Monday – Saturday:</strong> 9:00 AM – 8:00 PM[cite: 9]</p>
+                <p><strong>Sunday:</strong> 12:00 PM – 7:00 PM (Flexible Appointment Hours)[cite: 9]</p>
               </div>
             </div>
 
@@ -357,7 +388,7 @@
               <div class="info-icon-box">🚗</div>
               <div class="info-details">
                 <h3>Home &amp; Office Outcalls</h3>
-                <p>Mobile outcall massage services delivered to your private residence, hotel, or office anywhere across Port Harcourt.</p>
+                <p>Mobile outcall massage services delivered to your private residence, hotel, or office anywhere across Port Harcourt[cite: 9].</p>
               </div>
             </div>
 
@@ -367,7 +398,7 @@
           <div class="contact-map-box">
             <div class="map-header">
               <h3>Find Us in Port Harcourt</h3>
-              <p>Off Mummy B Road, close to prominent landmarks and easily accessible.</p>
+              <p>Off Mummy B Road, close to prominent landmarks and easily accessible[cite: 9].</p>
             </div>
             <div class="map-frame-wrapper">
               <iframe 
@@ -386,7 +417,7 @@
         <div class="contact-quick-cta">
           <h3>Ready to Experience Pure Relaxation?</h3>
           <p>
-            Skip the delay and secure your session immediately through our online booking engine or chat directly with our concierge desk.
+            Skip the delay and secure your session immediately through our online booking engine or chat directly with our concierge desk[cite: 9].
           </p>
           <div class="cta-actions">
             <a href="appointment.html" class="btn btn-gold btn-large">Reserve Appointment</a>
@@ -408,17 +439,16 @@
           <span class="brand-title">SHEDABY SPA</span>
         </div>
         <p class="footer-about">
-          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa. Where luxury meets relaxation.
+          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa[cite: 9]. Where luxury meets relaxation[cite: 9].
         </p>
       </div>
 
       <div class="footer-col">
         <h4 class="footer-title">Quick Links</h4>
         <ul class="footer-links">
-          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Our Oasis</a></li>
-          <li><a href="services.html">All Services</a></li>
-          <li><a href="index.html#pricing">Brochure Price List</a></li>
+          <li><a href="price.html">Price List</a></li>
           <li><a href="appointment.html">Book Appointment</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
@@ -427,42 +457,27 @@
       <div class="footer-col">
         <h4 class="footer-title">Brochure Highlights</h4>
         <ul class="footer-links">
-          <li><a href="services.html#massages">Deep Tissue Massage</a></li>
-          <li><a href="services.html#couples">Couple Massage</a></li>
-          <li><a href="services.html#vip">VIP Four Hands &amp; Nuru</a></li>
-          <li><a href="services.html#outcall">Home / Office Outcall</a></li>
-          <li><a href="services.html#grooming">Pedicure &amp; Manicure Combo</a></li>
+          <li><a href="price.html">Deep Tissue Massage</a></li>
+          <li><a href="price.html">Couple Massage</a></li>
+          <li><a href="price.html">VIP Four Hands &amp; Nuru</a></li>
+          <li><a href="price.html">Home / Office Outcall</a></li>
+          <li><a href="price.html">Pedicure &amp; Manicure Combo</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4 class="footer-title">Visit Shedaby Spa</h4>
-        <p class="footer-contact-line">10 Ikegwuru Street Off Mummy B Road, Port Harcourt</p>
-        <p class="footer-contact-line"><strong>Tel:</strong> 08174605032 / 08139570302</p>
-        <p class="footer-contact-line"><strong>Email:</strong> info@shedabyspa.com</p>
-        <p class="footer-contact-line"><strong>Web:</strong> www.shedabyspa.com</p>
+        <p class="footer-contact-line">10 Ikegwuru Street Off Mummy B Road, Port Harcourt[cite: 9]</p>
+        <p class="footer-contact-line"><strong>Tel:</strong> 08174605032 / 08139570302[cite: 9]</p>
+        <p class="footer-contact-line"><strong>Email:</strong> info@shedabyspa.com[cite: 9]</p>
+        <p class="footer-contact-line"><strong>Web:</strong> www.shedabyspa.com[cite: 9]</p>
       </div>
     </div>
 
     <div class="footer-bottom container">
-      <p>&copy; <span id="currentYear">2026</span> Shedaby Spa (...the beauty galaxy). All Rights Reserved.</p>
+      <p>&copy; <span id="currentYear">2026</span> Shedaby Spa (...the beauty galaxy)[cite: 9]. All Rights Reserved.</p>
     </div>
   </footer>
-
-  <!-- Floating Chat Button -->
- <!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = '5832cf1777d6371d327291ecdb099331b2563787';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-</script>
-<noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
-
 
   <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
