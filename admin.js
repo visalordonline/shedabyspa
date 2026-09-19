@@ -15,6 +15,7 @@ import {
   collection, 
   onSnapshot, 
   doc, 
+  updateDoc,
   deleteDoc 
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
@@ -131,7 +132,7 @@ function subscribeToAppointments() {
     console.error('Error streaming appointments:', error);
     appointmentsTableBody.innerHTML = `
       <tr>
-        <td colspan="6" class="empty-state">
+        <td colspan="7" class="empty-state">
           Firestore Permission Error. Verify you are authenticated.
         </td>
       </tr>
@@ -147,10 +148,13 @@ function renderMetrics(data) {
 
   let totalCount = data.length;
   let todayCount = 0;
+  let pendingCount = 0;
   let totalRevenue = 0;
 
   data.forEach(item => {
     if (item.date === todayStr) todayCount++;
+    if (!item.status || item.status === 'pending') pendingCount++;
+
     const rawPrice = (item.estimatedPrice || '').replace(/[^\d]/g, '');
     const num = parseInt(rawPrice, 10);
     if (!isNaN(num)) totalRevenue += num;
@@ -158,11 +162,12 @@ function renderMetrics(data) {
 
   document.getElementById('statTotal').textContent = totalCount;
   document.getElementById('statToday').textContent = todayCount;
+  document.getElementById('statPending').textContent = pendingCount;
   document.getElementById('statRevenue').textContent = `₦${totalRevenue.toLocaleString()}`;
 }
 
 // ==========================================
-// 4. RENDER TABLE
+// 4. RENDER TABLE (SHOWING CONFIRMED VS PENDING)
 // ==========================================
 function renderTable() {
   const queryTerm = searchInput.value.toLowerCase().trim();
@@ -182,7 +187,7 @@ function renderTable() {
   if (filtered.length === 0) {
     appointmentsTableBody.innerHTML = `
       <tr>
-        <td colspan="6" class="empty-state">No appointments found.</td>
+        <td colspan="7" class="empty-state">No appointments found.</td>
       </tr>
     `;
     return;
@@ -190,6 +195,7 @@ function renderTable() {
 
   appointmentsTableBody.innerHTML = filtered.map(apt => {
     const ref = apt.id.slice(0, 7).toUpperCase();
+    const isConfirmed = apt.status === 'confirmed';
 
     return `
       <tr data-id="${escapeHtml(apt.id)}">
@@ -211,6 +217,11 @@ function renderTable() {
           <strong>${escapeHtml(apt.estimatedPrice || '₦0')}</strong>
         </td>
         <td>
+          ${isConfirmed 
+            ? '<span class="badge-status confirmed">✓ Confirmed</span>' 
+            : '<span class="badge-status pending">⏳ Pending</span>'}
+        </td>
+        <td>
           <div class="table-row-actions">
             <button class="btn-icon view-btn" data-id="${escapeHtml(apt.id)}" title="View Client Info">👁</button>
             <button class="btn-icon delete delete-btn" data-id="${escapeHtml(apt.id)}" title="Delete record">🗑</button>
@@ -224,7 +235,7 @@ function renderTable() {
 }
 
 // ==========================================
-// 5. MODAL & ONE-CLICK EMAIL COPY
+// 5. MODAL & ONE-CLICK EMAIL COPY & CONFIRM
 // ==========================================
 function attachRowListeners() {
   document.querySelectorAll('.view-btn').forEach(btn => {
@@ -238,6 +249,10 @@ function attachRowListeners() {
       copyToast.style.display = 'none';
 
       modalBody.innerHTML = `
+        <div class="detail-row">
+          <span>Current Status:</span>
+          <strong>${apt.status === 'confirmed' ? '<span style="color:#2e8b57;">Confirmed</span>' : '<span style="color:#d97706;">Pending Confirmation</span>'}</strong>
+        </div>
         <div class="detail-row">
           <span>Booking Reference:</span>
           <strong>#${apt.id.slice(0, 7).toUpperCase()}</strong>
@@ -299,7 +314,7 @@ function attachRowListeners() {
   });
 }
 
-// Copy Confirmation Email Function
+// Copy Confirmation Email Function & Status Update
 modalCopyBtn.addEventListener('click', async () => {
   if (!currentViewingAppointment) return;
 
@@ -328,14 +343,23 @@ Warm regards,
 Shedaby Spa Concierge Desk`;
 
   try {
+    // 1. Copy formatted text to clipboard
     await navigator.clipboard.writeText(confirmationEmailText);
+
+    // 2. Automatically update status in Firestore to confirmed
+    await updateDoc(doc(db, 'appointments', apt.id), {
+      status: 'confirmed'
+    });
+
+    currentViewingAppointment.status = 'confirmed';
+
     copyToast.style.display = 'inline-block';
     setTimeout(() => {
       copyToast.style.display = 'none';
     }, 3500);
   } catch (err) {
-    console.error('Clipboard copy failed:', err);
-    alert('Failed to copy. Please allow clipboard permissions.');
+    console.error('Clipboard copy or status update failed:', err);
+    alert('Failed to copy or update appointment status: ' + err.message);
   }
 });
 

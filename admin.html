@@ -8,7 +8,7 @@
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#a53792">
@@ -86,6 +86,12 @@
         </div>
 
         <div class="metric-card">
+          <span class="metric-title">Pending Confirmation</span>
+          <h3 class="metric-value warning" id="statPending">0</h3>
+          <span class="metric-sub">Not yet copied/confirmed</span>
+        </div>
+
+        <div class="metric-card">
           <span class="metric-title">Total Estimated Value</span>
           <h3 class="metric-value gold" id="statRevenue">₦0</h3>
           <span class="metric-sub">All client bookings</span>
@@ -116,12 +122,13 @@
                 <th>Treatment & Duration</th>
                 <th>Date & Time</th>
                 <th>Price</th>
+                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody id="appointmentsTableBody">
               <tr>
-                <td colspan="6" class="loading-state">
+                <td colspan="7" class="loading-state">
                   <div class="spinner"></div>
                   <p>Connecting to secure Firestore stream...</p>
                 </td>
@@ -144,7 +151,7 @@
         <!-- Injected via JavaScript -->
       </div>
       <div class="modal-footer" style="padding: 16px 24px; border-top: 1px solid var(--color-border); background: var(--color-bg-sand); display: flex; justify-content: space-between; align-items: center; gap: 12px;">
-        <span id="copyToast" style="font-size: 0.82rem; color: #2e8b57; font-weight: 600; display: none;">✓ Email copied to clipboard!</span>
+        <span id="copyToast" style="font-size: 0.82rem; color: #2e8b57; font-weight: 600; display: none;">✓ Copied & Confirmed!</span>
         <button type="button" class="btn btn-gold btn-sm" id="modalCopyBtn" style="margin-left: auto;">
           📋 Copy Confirmation Email
         </button>
