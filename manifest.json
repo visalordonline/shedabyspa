@@ -1,0 +1,24 @@
+{
+  "name": "Shedaby Spa — The Beauty Galaxy",
+  "short_name": "Shedaby Spa",
+  "description": "Luxury wellness and therapeutic spa sanctuary in Port Harcourt.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#120912",
+  "theme_color": "#a53792",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23a53792'/><text y='.72em' x='50%' text-anchor='middle' font-size='60'>✨</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23a53792'/><text y='.72em' x='50%' text-anchor='middle' font-size='60'>✨</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,25 +1,23 @@
 /**
- * AuraSerene Luxury Massage — Admin & Concierge Engine
- * Firebase Modular SDK (Auth & Realtime Firestore)
+ * Shedaby Spa — Concierge & Admin Engine
+ * Firebase Modular SDK (Realtime Firestore & Email Confirmation Copy)
  */
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { 
   getAuth, 
   signInWithEmailAndPassword, 
   signOut, 
   onAuthStateChanged 
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { 
   getFirestore, 
   collection, 
   onSnapshot, 
   doc, 
-  updateDoc, 
   deleteDoc 
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-// Firebase configuration matching project
 const firebaseConfig = {
   apiKey: "AIzaSyD9tIPz-JOvuxm3L7Y1V2Ds85tpJfLulsI",
   authDomain: "massage-a122b.firebaseapp.com",
@@ -30,14 +28,13 @@ const firebaseConfig = {
   measurementId: "G-JNV4RDEEJJ"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// State
 let appointmentsCache = [];
 let unsubscribeFirestore = null;
+let currentViewingAppointment = null;
 
 // DOM Elements
 const authScreen = document.getElementById('authScreen');
@@ -50,12 +47,13 @@ const userDisplayEmail = document.getElementById('userDisplayEmail');
 
 const appointmentsTableBody = document.getElementById('appointmentsTableBody');
 const searchInput = document.getElementById('searchInput');
-const statusFilter = document.getElementById('statusFilter');
 
 // Modal Elements
 const detailsModal = document.getElementById('detailsModal');
 const modalBody = document.getElementById('modalBody');
 const modalClose = document.getElementById('modalClose');
+const modalCopyBtn = document.getElementById('modalCopyBtn');
+const copyToast = document.getElementById('copyToast');
 
 // ==========================================
 // 1. AUTHENTICATION LISTENER
@@ -76,9 +74,6 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// ==========================================
-// 2. LOGIN & LOGOUT HANDLERS
-// ==========================================
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   authAlert.style.display = 'none';
@@ -99,13 +94,7 @@ loginForm.addEventListener('submit', async (e) => {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
     console.error('Login error:', error);
-    if (error.code === 'auth/invalid-credential') {
-      authAlert.textContent = 'Invalid email or password. Verify the user exists in Firebase Auth.';
-    } else if (error.code === 'auth/too-many-requests') {
-      authAlert.textContent = 'Too many attempts. Please wait a few minutes before trying again.';
-    } else {
-      authAlert.textContent = error.message || 'Authentication failed.';
-    }
+    authAlert.textContent = error.message || 'Authentication failed.';
     authAlert.style.display = 'block';
   } finally {
     loginBtn.disabled = false;
@@ -113,17 +102,14 @@ loginForm.addEventListener('submit', async (e) => {
   }
 });
 
-logoutBtn.addEventListener('click', () => {
-  signOut(auth);
-});
+logoutBtn.addEventListener('click', () => signOut(auth));
 
 // ==========================================
-// 3. REALTIME FIRESTORE SUBSCRIPTION
+// 2. REALTIME FIRESTORE SUBSCRIPTION
 // ==========================================
 function subscribeToAppointments() {
   const collRef = collection(db, 'appointments');
 
-  // Stream raw collection without server-side index constraints; sort in-memory
   unsubscribeFirestore = onSnapshot(collRef, (snapshot) => {
     appointmentsCache = [];
     snapshot.forEach(docSnap => {
@@ -133,7 +119,6 @@ function subscribeToAppointments() {
       });
     });
 
-    // Client-side date sorting handles missing or mixed timestamp types safely
     appointmentsCache.sort((a, b) => {
       const timeA = a.createdAt?.toMillis ? a.createdAt.toMillis() : (a.createdAt ? new Date(a.createdAt).getTime() : 0);
       const timeB = b.createdAt?.toMillis ? b.createdAt.toMillis() : (b.createdAt ? new Date(b.createdAt).getTime() : 0);
@@ -146,8 +131,8 @@ function subscribeToAppointments() {
     console.error('Error streaming appointments:', error);
     appointmentsTableBody.innerHTML = `
       <tr>
-        <td colspan="7" class="empty-state">
-          Firestore Permission Error. Make sure you are authenticated with proper read permissions.
+        <td colspan="6" class="empty-state">
+          Firestore Permission Error. Verify you are authenticated.
         </td>
       </tr>
     `;
@@ -155,59 +140,49 @@ function subscribeToAppointments() {
 }
 
 // ==========================================
-// 4. METRICS COMPUTATION
+// 3. METRICS
 // ==========================================
 function renderMetrics(data) {
   const todayStr = new Date().toISOString().split('T')[0];
 
   let totalCount = data.length;
   let todayCount = 0;
-  let pendingCount = 0;
   let totalRevenue = 0;
 
   data.forEach(item => {
     if (item.date === todayStr) todayCount++;
-    if (item.status === 'pending') pendingCount++;
-
-    if (item.status === 'completed' || item.status === 'confirmed') {
-      const rawPrice = (item.estimatedPrice || '').replace(/[^\d]/g, '');
-      const num = parseInt(rawPrice, 10);
-      if (!isNaN(num)) totalRevenue += num;
-    }
+    const rawPrice = (item.estimatedPrice || '').replace(/[^\d]/g, '');
+    const num = parseInt(rawPrice, 10);
+    if (!isNaN(num)) totalRevenue += num;
   });
 
   document.getElementById('statTotal').textContent = totalCount;
   document.getElementById('statToday').textContent = todayCount;
-  document.getElementById('statPending').textContent = pendingCount;
   document.getElementById('statRevenue').textContent = `₦${totalRevenue.toLocaleString()}`;
 }
 
 // ==========================================
-// 5. RENDER TABLE WITH REAL-TIME FILTERS
+// 4. RENDER TABLE
 // ==========================================
 function renderTable() {
   const queryTerm = searchInput.value.toLowerCase().trim();
-  const filterVal = statusFilter.value;
 
   const filtered = appointmentsCache.filter(apt => {
-    const matchesStatus = filterVal === 'all' || apt.status === filterVal;
     const refCode = apt.id.slice(0, 7).toLowerCase();
     const name = (apt.clientName || '').toLowerCase();
     const phone = (apt.phone || '').toLowerCase();
     const email = (apt.email || '').toLowerCase();
 
-    const matchesSearch = name.includes(queryTerm) || 
-                          phone.includes(queryTerm) || 
-                          email.includes(queryTerm) || 
-                          refCode.includes(queryTerm);
-
-    return matchesStatus && matchesSearch;
+    return name.includes(queryTerm) || 
+           phone.includes(queryTerm) || 
+           email.includes(queryTerm) || 
+           refCode.includes(queryTerm);
   });
 
   if (filtered.length === 0) {
     appointmentsTableBody.innerHTML = `
       <tr>
-        <td colspan="7" class="empty-state">No matching appointments found.</td>
+        <td colspan="6" class="empty-state">No appointments found.</td>
       </tr>
     `;
     return;
@@ -215,7 +190,6 @@ function renderTable() {
 
   appointmentsTableBody.innerHTML = filtered.map(apt => {
     const ref = apt.id.slice(0, 7).toUpperCase();
-    const status = apt.status || 'pending';
 
     return `
       <tr data-id="${escapeHtml(apt.id)}">
@@ -237,16 +211,8 @@ function renderTable() {
           <strong>${escapeHtml(apt.estimatedPrice || '₦0')}</strong>
         </td>
         <td>
-          <select class="status-dropdown" data-id="${escapeHtml(apt.id)}">
-            <option value="pending" ${status === 'pending' ? 'selected' : ''}>Pending</option>
-            <option value="confirmed" ${status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
-            <option value="completed" ${status === 'completed' ? 'selected' : ''}>Completed</option>
-            <option value="cancelled" ${status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
-          </select>
-        </td>
-        <td>
           <div class="table-row-actions">
-            <button class="btn-icon view-btn" data-id="${escapeHtml(apt.id)}" title="View details">👁</button>
+            <button class="btn-icon view-btn" data-id="${escapeHtml(apt.id)}" title="View Client Info">👁</button>
             <button class="btn-icon delete delete-btn" data-id="${escapeHtml(apt.id)}" title="Delete record">🗑</button>
           </div>
         </td>
@@ -258,32 +224,18 @@ function renderTable() {
 }
 
 // ==========================================
-// 6. EVENT LISTENERS
+// 5. MODAL & ONE-CLICK EMAIL COPY
 // ==========================================
 function attachRowListeners() {
-  document.querySelectorAll('.status-dropdown').forEach(dropdown => {
-    dropdown.addEventListener('change', async (e) => {
-      const docId = e.target.getAttribute('data-id');
-      const newStatus = e.target.value;
-
-      try {
-        await updateDoc(doc(db, 'appointments', docId), {
-          status: newStatus
-        });
-      } catch (err) {
-        console.error('Error updating status:', err);
-        alert('Could not update status: ' + err.message);
-      }
-    });
-  });
-
   document.querySelectorAll('.view-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const docId = btn.getAttribute('data-id');
       const apt = appointmentsCache.find(a => a.id === docId);
       if (!apt) return;
 
+      currentViewingAppointment = apt;
       const cleanPhone = encodeURIComponent(apt.phone || '');
+      copyToast.style.display = 'none';
 
       modalBody.innerHTML = `
         <div class="detail-row">
@@ -296,7 +248,7 @@ function attachRowListeners() {
         </div>
         <div class="detail-row">
           <span>Contact Number:</span>
-          <a href="tel:${cleanPhone}" style="color:var(--color-gold);">${escapeHtml(apt.phone || 'N/A')}</a>
+          <a href="tel:${cleanPhone}" style="color:var(--color-gold); font-weight:600;">${escapeHtml(apt.phone || 'N/A')}</a>
         </div>
         <div class="detail-row">
           <span>Email Address:</span>
@@ -317,6 +269,10 @@ function attachRowListeners() {
         <div class="detail-row">
           <span>Scheduled Date:</span>
           <strong>${escapeHtml(apt.date || 'N/A')} at ${escapeHtml(apt.timeSlot || '')}</strong>
+        </div>
+        <div class="detail-row">
+          <span>Estimated Fee:</span>
+          <strong>${escapeHtml(apt.estimatedPrice || '₦0')}</strong>
         </div>
         <div>
           <label style="font-size:0.8rem; font-weight:600; display:block; margin-bottom:6px;">Special Requests / Focus Areas:</label>
@@ -343,13 +299,59 @@ function attachRowListeners() {
   });
 }
 
-modalClose.addEventListener('click', () => detailsModal.classList.remove('active'));
+// Copy Confirmation Email Function
+modalCopyBtn.addEventListener('click', async () => {
+  if (!currentViewingAppointment) return;
+
+  const apt = currentViewingAppointment;
+  const ref = apt.id.slice(0, 7).toUpperCase();
+
+  const confirmationEmailText = 
+`Dear ${apt.clientName || 'Valued Guest'},
+
+Your appointment has been confirmed by the admin at Shedaby Spa (...the beauty galaxy).
+
+Here are your confirmed reservation details:
+- Booking Reference: #${ref}
+- Treatment: ${apt.serviceName || 'Spa Therapy'}
+- Option: ${apt.duration || 'Full Session'}
+- Date & Time: ${apt.date || 'Scheduled Date'} at ${apt.timeSlot || 'Scheduled Time'}
+- Party Size: ${apt.guests || '1 Guest'}
+- Total Fee: ${apt.estimatedPrice || '₦0'}
+- Location: 10 Ikegwuru Street Off Mummy B Road, Port Harcourt
+
+If you have any questions or need to reschedule, please contact us on 08174605032 or 08139570302.
+
+We look forward to welcoming you to our serene sanctuary.
+
+Warm regards,
+Shedaby Spa Concierge Desk`;
+
+  try {
+    await navigator.clipboard.writeText(confirmationEmailText);
+    copyToast.style.display = 'inline-block';
+    setTimeout(() => {
+      copyToast.style.display = 'none';
+    }, 3500);
+  } catch (err) {
+    console.error('Clipboard copy failed:', err);
+    alert('Failed to copy. Please allow clipboard permissions.');
+  }
+});
+
+modalClose.addEventListener('click', () => {
+  detailsModal.classList.remove('active');
+  currentViewingAppointment = null;
+});
+
 window.addEventListener('click', (e) => {
-  if (e.target === detailsModal) detailsModal.classList.remove('active');
+  if (e.target === detailsModal) {
+    detailsModal.classList.remove('active');
+    currentViewingAppointment = null;
+  }
 });
 
 searchInput.addEventListener('input', renderTable);
-statusFilter.addEventListener('change', renderTable);
 
 function escapeHtml(text) {
   const map = {

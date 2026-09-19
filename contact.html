@@ -18,6 +18,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#a53792">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Shedaby Spa">
   <!-- Header / Navigation Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
@@ -321,6 +326,10 @@
           <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Light and Dark Mode">
             <span id="themeIcon">🌙</span>
           </button>
+          <!-- PWA Install Button (hidden until prompt is ready) -->
+        <button class="btn btn-gold btn-sm" id="pwaInstallBtn" style="display: none; padding: 8px 16px; font-size: 0.75rem;">
+            📲 Install App
+        </button>
         </div>
       </div>
     </nav>
@@ -335,7 +344,7 @@
         <span class="contact-hero-tag">We Are Here For You</span>
         <h1>Get in Touch with <em>Our Concierge.</em></h1>
         <p class="contact-hero-p">
-          Have inquiries regarding our treatments, outcall reservations, or directions to our sanctuary? Reach out to our team at any time[cite: 9].
+          Have inquiries regarding our treatments, outcall reservations, or directions to our sanctuary? Reach out to our team at any time.
         </p>
       </div>
     </section>
@@ -353,7 +362,7 @@
               <div class="info-icon-box">📍</div>
               <div class="info-details">
                 <h3>Our Sanctuary Location</h3>
-                <p>10 Ikegwuru Street Off Mummy B Road, Port Harcourt 500272, Rivers State, Nigeria[cite: 9].</p>
+                <p>10 Ikegwuru Street Off Mummy B Road, Port Harcourt 500272, Rivers State, Nigeria.</p>
               </div>
             </div>
 
@@ -361,8 +370,8 @@
               <div class="info-icon-box">📞</div>
               <div class="info-details">
                 <h3>Direct Telephone Lines</h3>
-                <p><a href="tel:08174605032">08174605032</a>[cite: 9]</p>
-                <p><a href="tel:08139570302">08139570302</a>[cite: 9]</p>
+                <p><a href="tel:08174605032">08174605032</a></p>
+                <p><a href="tel:08139570302">08139570302</a></p>
               </div>
             </div>
 
@@ -370,8 +379,8 @@
               <div class="info-icon-box">✉️</div>
               <div class="info-details">
                 <h3>Electronic Mail &amp; Web</h3>
-                <p><a href="mailto:info@shedabyspa.com">info@shedabyspa.com</a>[cite: 9]</p>
-                <p><a href="https://www.shedabyspa.com" target="_blank" rel="noopener">www.shedabyspa.com</a>[cite: 9]</p>
+                <p><a href="mailto:info@shedabyspa.com">info@shedabyspa.com</a></p>
+                <p><a href="https://www.shedabyspa.com" target="_blank" rel="noopener">www.shedabyspa.com</a></p>
               </div>
             </div>
 
@@ -379,8 +388,8 @@
               <div class="info-icon-box">🕒</div>
               <div class="info-details">
                 <h3>Spa Hours of Operation</h3>
-                <p><strong>Monday – Saturday:</strong> 9:00 AM – 8:00 PM[cite: 9]</p>
-                <p><strong>Sunday:</strong> 12:00 PM – 7:00 PM (Flexible Appointment Hours)[cite: 9]</p>
+                <p><strong>Monday – Saturday:</strong> 9:00 AM – 8:00 PM</p>
+                <p><strong>Sunday:</strong> 12:00 PM – 7:00 PM (Flexible Appointment Hours)</p>
               </div>
             </div>
 
@@ -388,7 +397,7 @@
               <div class="info-icon-box">🚗</div>
               <div class="info-details">
                 <h3>Home &amp; Office Outcalls</h3>
-                <p>Mobile outcall massage services delivered to your private residence, hotel, or office anywhere across Port Harcourt[cite: 9].</p>
+                <p>Mobile outcall massage services delivered to your private residence, hotel, or office anywhere across Port Harcourt.</p>
               </div>
             </div>
 
@@ -398,7 +407,7 @@
           <div class="contact-map-box">
             <div class="map-header">
               <h3>Find Us in Port Harcourt</h3>
-              <p>Off Mummy B Road, close to prominent landmarks and easily accessible[cite: 9].</p>
+              <p>Off Mummy B Road, close to prominent landmarks and easily accessible.</p>
             </div>
             <div class="map-frame-wrapper">
               <iframe 
@@ -417,7 +426,7 @@
         <div class="contact-quick-cta">
           <h3>Ready to Experience Pure Relaxation?</h3>
           <p>
-            Skip the delay and secure your session immediately through our online booking engine or chat directly with our concierge desk[cite: 9].
+            Skip the delay and secure your session immediately through our online booking engine or chat directly with our concierge desk.
           </p>
           <div class="cta-actions">
             <a href="appointment.html" class="btn btn-gold btn-large">Reserve Appointment</a>
@@ -439,7 +448,7 @@
           <span class="brand-title">SHEDABY SPA</span>
         </div>
         <p class="footer-about">
-          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa[cite: 9]. Where luxury meets relaxation[cite: 9].
+          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa. Where luxury meets relaxation.
         </p>
       </div>
 
@@ -467,15 +476,15 @@
 
       <div class="footer-col">
         <h4 class="footer-title">Visit Shedaby Spa</h4>
-        <p class="footer-contact-line">10 Ikegwuru Street Off Mummy B Road, Port Harcourt[cite: 9]</p>
-        <p class="footer-contact-line"><strong>Tel:</strong> 08174605032 / 08139570302[cite: 9]</p>
-        <p class="footer-contact-line"><strong>Email:</strong> info@shedabyspa.com[cite: 9]</p>
-        <p class="footer-contact-line"><strong>Web:</strong> www.shedabyspa.com[cite: 9]</p>
+        <p class="footer-contact-line">10 Ikegwuru Street Off Mummy B Road, Port Harcourt</p>
+        <p class="footer-contact-line"><strong>Tel:</strong> 08174605032 / 08139570302</p>
+        <p class="footer-contact-line"><strong>Email:</strong> info@shedabyspa.com</p>
+        <p class="footer-contact-line"><strong>Web:</strong> www.shedabyspa.com</p>
       </div>
     </div>
 
     <div class="footer-bottom container">
-      <p>&copy; <span id="currentYear">2026</span> Shedaby Spa (...the beauty galaxy)[cite: 9]. All Rights Reserved.</p>
+      <p>&copy; <span id="currentYear">2026</span> Shedaby Spa (...the beauty galaxy). All Rights Reserved.</p>
     </div>
   </footer>
 

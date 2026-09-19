@@ -3,24 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AuraSerene — Sanctuary Concierge & Admin Dashboard</title>
+  <title>Shedaby Spa — Concierge & Admin Dashboard</title>
   <meta name="robots" content="noindex, nofollow">
   
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#a53792">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Shedaby Spa">
   <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
-  <!-- ==================== AUTH VIEW (LOGIN SCREEN) ==================== -->
+  <!-- ==================== AUTH VIEW ==================== -->
   <section class="admin-auth-screen" id="authScreen">
     <div class="auth-card">
       <div class="auth-brand">
-        <span class="brand-sub">SANCTUARY OF WELLNESS</span>
-        <h1 class="brand-title">AURASERENE</h1>
+        <span class="brand-sub">...THE BEAUTY GALAXY</span>
+        <h1 class="brand-title">SHEDABY SPA</h1>
         <p class="auth-tag">Concierge Administration Portal</p>
       </div>
 
@@ -29,7 +33,7 @@
       <form id="loginForm" class="auth-form" novalidate>
         <div class="form-group">
           <label for="adminEmail">Admin Email</label>
-          <input type="email" id="adminEmail" placeholder="concierge@auraserene.com" required autocomplete="email">
+          <input type="email" id="adminEmail" placeholder="admin@shedabyspa.com" required autocomplete="email">
         </div>
 
         <div class="form-group">
@@ -46,20 +50,22 @@
 
   <!-- ==================== DASHBOARD VIEW ==================== -->
   <div class="admin-layout" id="dashboardLayout" style="display: none;">
-    <!-- Top Bar Navigation -->
     <header class="admin-header">
       <div class="admin-nav-container">
         <div class="admin-brand">
           <span class="brand-sub">PORTAL</span>
-          <h2>AuraSerene Concierge</h2>
+          <h2>Shedaby Spa Concierge</h2>
         </div>
 
         <div class="admin-user-nav">
           <div class="user-badge">
             <span class="user-status-dot"></span>
-            <span id="userDisplayEmail">admin@auraserene.com</span>
+            <span id="userDisplayEmail">admin@shedabyspa.com</span>
           </div>
           <button id="logoutBtn" class="btn btn-outline-light btn-sm">Sign Out</button>
+          <button class="btn btn-gold btn-sm" id="pwaInstallBtn" style="display: none; padding: 8px 16px; font-size: 0.75rem;">
+            📲 Install App
+          </button>
         </div>
       </div>
     </header>
@@ -80,19 +86,13 @@
         </div>
 
         <div class="metric-card">
-          <span class="metric-title">Pending Confirmation</span>
-          <h3 class="metric-value warning" id="statPending">0</h3>
-          <span class="metric-sub">Awaiting therapist review</span>
-        </div>
-
-        <div class="metric-card">
-          <span class="metric-title">Estimated Revenue</span>
+          <span class="metric-title">Total Estimated Value</span>
           <h3 class="metric-value gold" id="statRevenue">₦0</h3>
-          <span class="metric-sub">Confirmed & completed</span>
+          <span class="metric-sub">All client bookings</span>
         </div>
       </section>
 
-      <!-- Table Management & Filters -->
+      <!-- Table Management -->
       <section class="appointments-management">
         <div class="table-header-controls">
           <div>
@@ -101,28 +101,12 @@
           </div>
 
           <div class="table-actions">
-            <!-- Search -->
             <div class="search-input-wrap">
               <input type="text" id="searchInput" placeholder="Search by name, phone, or ref...">
-            </div>
-
-            <!-- Status Filter -->
-            <div class="filter-select-wrap">
-              <select id="statusFilter">
-                <option value="all">All Statuses</option>
-                <option value="pending">Pending</option>
-                <option value="confirmed">Confirmed</option>
-                <option value="completed">Completed</option>
-                <option value="cancelled">Cancelled</option>
-              </select>
             </div>
           </div>
         </div>
 
-        <!-- Feedback Banner -->
-        <div class="action-alert" id="actionAlert" style="display: none;"></div>
-
-        <!-- Table Responsive Container -->
         <div class="table-responsive">
           <table class="appointments-table">
             <thead>
@@ -132,13 +116,12 @@
                 <th>Treatment & Duration</th>
                 <th>Date & Time</th>
                 <th>Price</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="appointmentsTableBody">
               <tr>
-                <td colspan="7" class="loading-state">
+                <td colspan="6" class="loading-state">
                   <div class="spinner"></div>
                   <p>Connecting to secure Firestore stream...</p>
                 </td>
@@ -150,7 +133,7 @@
     </main>
   </div>
 
-  <!-- Detail Modal for Special Requests & Contact Notes -->
+  <!-- Detail Modal with One-Click Copy Confirmation -->
   <div class="modal" id="detailsModal">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -159,6 +142,12 @@
       </div>
       <div class="modal-body" id="modalBody">
         <!-- Injected via JavaScript -->
+      </div>
+      <div class="modal-footer" style="padding: 16px 24px; border-top: 1px solid var(--color-border); background: var(--color-bg-sand); display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+        <span id="copyToast" style="font-size: 0.82rem; color: #2e8b57; font-weight: 600; display: none;">✓ Email copied to clipboard!</span>
+        <button type="button" class="btn btn-gold btn-sm" id="modalCopyBtn" style="margin-left: auto;">
+          📋 Copy Confirmation Email
+        </button>
       </div>
     </div>
   </div>
