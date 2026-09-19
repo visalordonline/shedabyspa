@@ -1,5 +1,5 @@
 /**
- * Shedaby Spa — Concierge & Admin Engine
+ * Shedaby Spa Concierge & Admin Engine
  * Firebase Modular SDK (Realtime Firestore & Email Confirmation Copy)
  */
 

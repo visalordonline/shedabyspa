@@ -341,7 +341,7 @@ function initBookingEngine() {
       const option = document.createElement('option');
       option.value = opt.label;
       option.setAttribute('data-price', opt.price);
-      option.textContent = `${opt.label} — ₦${opt.price}`;
+      option.textContent = `${opt.label} ₦${opt.price}`;
       if (idx === 0) option.selected = true;
       durationSelect.appendChild(option);
     });
