@@ -290,6 +290,54 @@
       font-size: 0.98rem;
       margin-bottom: 26px;
     }
+    .whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 58px;
+  height: 58px;
+  background-color: #25D366;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+  z-index: 9999;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  color: #FFFFFF;
+}
+
+.whatsapp-icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* Offset position if Back-to-Top is located at the bottom-right */
+.back-to-top {
+  bottom: 92px !important;
+}
+
+@media (max-width: 600px) {
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+  }
+  .whatsapp-icon {
+    width: 28px;
+    height: 28px;
+  }
+  .back-to-top {
+    bottom: 82px !important;
+  }
+}
   </style>
 
   <!-- ==================== SMARTSUPP LIVE CHAT ==================== -->

@@ -3,30 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book an Appointment Shedaby Spa (...the beauty galaxy)</title>
+  <title>Book an Appointment — Shedaby Spa (...the beauty galaxy)</title>
   <meta name="description" content="Reserve your massage, facial, body sculpt, or VIP wellness session at Shedaby Spa in Port Harcourt. Easy online appointment scheduling.">
   
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Book an Appointment Shedaby Spa">
+  <meta property="og:title" content="Book an Appointment — Shedaby Spa">
   <meta property="og:description" content="Reserve your massage, facial, or wellness therapy session online.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80">
   
-<!-- Standard Favicon -->
-<link rel="icon" type="image/png" href="logo.png">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
 
-<!-- Apple Touch Icon for Mobile / PWA -->
-<link rel="apple-touch-icon" href="logo.png">
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Header / Navigation Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- ==================== RESPONSIVE INTERNAL CSS ==================== -->
   <style>
-    /* Reset visibility and prevent overflow issues */
     .appointment-page-main * {
       opacity: 1 !important;
       visibility: visible !important;
@@ -34,7 +28,6 @@
       box-sizing: border-box;
     }
 
-    /* Appointment Hero Banner */
     .booking-hero {
       position: relative;
       min-height: 45vh;
@@ -87,7 +80,6 @@
       line-height: 1.7;
     }
 
-    /* Booking Form Layout */
     .booking-section-wrapper {
       padding: 60px 0 80px 0;
       background-color: var(--color-bg-light);
@@ -228,7 +220,6 @@
       min-height: 16px;
     }
 
-    /* Price Preview Box */
     .price-banner-box {
       grid-column: 1 / -1;
       background: var(--color-bg-sand);
@@ -258,7 +249,6 @@
       color: var(--color-primary-light);
     }
 
-    /* Terms & Submit */
     .terms-row {
       grid-column: 1 / -1;
       display: flex;
@@ -305,7 +295,6 @@
       margin-top: 10px;
     }
 
-    /* Concierge Info Row */
     .booking-perks-row {
       width: min(92%, 960px);
       margin: 30px auto 0 auto;
@@ -345,7 +334,6 @@
       margin: 0;
     }
 
-    /* Theme Toggle Button */
     .theme-toggle-btn {
       display: inline-flex;
       align-items: center;
@@ -367,7 +355,145 @@
       border-color: var(--color-gold);
     }
 
-    /* ==================== SCREEN SIZE BREAKPOINTS ==================== */
+    /* ===== Persistent Bold & Ticked Payment Option Styling ===== */
+    .pay-account {
+      border: 1.5px dashed var(--color-gold, #a53792);
+      border-radius: 12px;
+      padding: 10px 16px;
+      margin-bottom: 12px;
+      background: var(--color-bg-sand, #fbf7fa);
+    }
+    .pay-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+      font-size: 0.88rem;
+      border-bottom: 1px solid var(--color-border, #eee);
+    }
+    .pay-row:last-child { border-bottom: 0; }
+    .pay-row span { color: var(--color-text-muted, #777); }
+    .pay-row strong { text-align: right; }
+    .pay-acct-num { font-size: 1.15rem; letter-spacing: 0.08em; color: var(--color-gold, #a53792); }
+
+    .pay-copy {
+      width: 100%;
+      margin-bottom: 18px;
+      padding: 10px 14px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--color-gold, #a53792);
+      border: 1.5px solid var(--color-gold, #a53792);
+      border-radius: 8px;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .pay-copy:hover {
+      background: var(--color-gold, #a53792);
+      color: #fff;
+    }
+
+    .pay-options {
+      border: 0;
+      padding: 0;
+      margin: 0 0 8px;
+    }
+    .pay-options legend {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-heading, #1f121e);
+      margin-bottom: 10px;
+      padding: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pay-option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      border: 2px solid var(--color-border, #e3d3df);
+      border-radius: 12px;
+      background: var(--color-card-bg, #ffffff);
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .pay-option:hover {
+      border-color: var(--color-gold, #a53792);
+      transform: translateY(-1px);
+    }
+
+    .pay-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .pay-radio-circle {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      border: 2px solid #b5a4b1;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      transition: all 0.2s ease;
+    }
+
+    .pay-radio-check {
+      display: none;
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .pay-option-content strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-heading, #222);
+      margin-bottom: 2px;
+      transition: color 0.2s ease;
+    }
+
+    .pay-option-content small {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--color-text-muted, #666);
+      line-height: 1.35;
+    }
+
+    /* Selected state: Bold title, highlighted background, and visible bold tick */
+    .pay-option.selected {
+      border-color: #a53792 !important;
+      background: #faf2f8 !important;
+      box-shadow: 0 4px 14px rgba(165, 55, 146, 0.16);
+    }
+
+    .pay-option.selected .pay-radio-circle {
+      background-color: #a53792 !important;
+      border-color: #a53792 !important;
+    }
+
+    .pay-option.selected .pay-radio-check {
+      display: block !important;
+    }
+
+    .pay-option.selected .pay-option-content strong {
+      font-weight: 800 !important;
+      color: #a53792 !important;
+    }
+
     @media (max-width: 768px) {
       .booking-card-container {
         padding: 30px 20px;
@@ -419,27 +545,75 @@
         width: 94%;
       }
     }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 58px;
+      height: 58px;
+      background-color: #25D366;
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+      z-index: 9999;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+      color: #FFFFFF;
+    }
+
+    .whatsapp-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .back-to-top {
+      bottom: 92px !important;
+    }
+
+    @media (max-width: 600px) {
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+      }
+      .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+      }
+      .back-to-top {
+        bottom: 82px !important;
+      }
+    }
   </style>
 
-  <!-- Smartsupp Live Chat -->
-  <script type="text/javascript">
-    var _smartsupp = _smartsupp || {};
-    _smartsupp.key = '5832cf1777d6371d327291ecdb099331b2563787';
-    window.smartsupp||(function(d) {
-      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-      c.type='text/javascript';c.charset='utf-8';c.async=true;
-      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-    })(document);
-  </script>
-  <noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+  <!-- Floating WhatsApp Chat Widget -->
+  <a 
+    href="https://wa.me/2348139570302?text=Hello%20Shedaby%20Spa,%20I%20would%20like%20to%20inquire%20about%20your%20services." 
+    class="whatsapp-float" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    aria-label="Chat on WhatsApp"
+  >
+    <svg viewBox="0 0 32 32" class="whatsapp-icon" fill="currentColor">
+      <path d="M16 2a13.9 13.9 0 0 0-12 21L2 30l7.2-1.9A13.9 13.9 0 1 0 16 2zm0 25.5a11.5 11.5 0 0 1-5.9-1.6l-.4-.3-4.4 1.2 1.2-4.3-.3-.4A11.6 11.6 0 1 1 16 27.5zm6.4-8.6c-.3-.2-2-.1-2.3 0s-.5.3-.7.5-.4.5-.6.5-.4 0-.8-.2a9.7 9.7 0 0 1-3.6-3.1c-.4-.7-.1-.9.2-1.2l.6-.7c.2-.2.2-.4.1-.6s-.9-2.2-1.2-3-.7-.7-.9-.7h-.8c-.3 0-.7.1-1 .5s-1.3 1.3-1.3 3.1 1.3 3.6 1.5 3.9 2.6 4 6.3 5.6c.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.2-.9 2.5-1.8.3-.8.3-1.6.2-1.8s-.3-.2-.7-.4z"/>
+    </svg>
+  </a>
 </head>
 <body>
 
   <!-- ==================== STICKY NAVIGATION ==================== -->
   <header class="header" id="header">
     <nav class="navbar container">
-      <a href="index.html" class="nav-brand">
+      <a href="index" class="nav-brand">
         <span class="brand-sub">...THE BEAUTY GALAXY</span>
         <span class="brand-title">SHEDABY SPA</span>
       </a>
@@ -452,14 +626,14 @@
 
       <div class="nav-menu" id="navMenu">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="price.html" class="nav-link">Price</a></li>
-          <li><a href="appointment.html" class="nav-link active">Appointment</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="./" class="nav-link">Home</a></li>
+          <li><a href="about" class="nav-link">About</a></li>
+          <li><a href="price" class="nav-link">Price</a></li>
+          <li><a href="appointment" class="nav-link active">Appointment</a></li>
+          <li><a href="contact" class="nav-link">Contact</a></li>
         </ul>
         <div style="display: flex; align-items: center; gap: 10px;">
-          <a href="appointment.html" class="btn btn-gold nav-btn">Book Now</a>
+          <a href="appointment" class="btn btn-gold nav-btn">Book Now</a>
           <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Light and Dark Mode">
             <span id="themeIcon">🌙</span>
           </button>
@@ -477,7 +651,7 @@
         <span class="booking-hero-tag">Celestial Sanctuary</span>
         <h1>Reserve Your <em>Wellness Journey.</em></h1>
         <p class="booking-hero-p">
-          Select your desired massage therapy, facial, or body contouring treatment from our brochure menu[cite: 8]. Our master therapists will prepare your private sanctuary suite[cite: 8].
+          Select your desired massage therapy, facial, or body contouring treatment from our brochure menu[cite: 3]. Our master therapists will prepare your private sanctuary suite[cite: 3].
         </p>
       </div>
     </section>
@@ -488,10 +662,9 @@
         
         <div class="booking-card-header">
           <h2>Appointment Reservation</h2>
-          <p>Complete your session preferences below for real-time concierge synchronization[cite: 8].</p>
+          <p>Complete your session preferences below for real-time concierge synchronization[cite: 3].</p>
         </div>
 
-        <!-- Dynamic Success/Error Alert -->
         <div class="form-alert" id="formAlert" style="display: none;" role="alert"></div>
 
         <form id="bookingForm" class="booking-form" novalidate>
@@ -530,96 +703,104 @@
               <span class="error-msg" id="guestError"></span>
             </div>
 
-            <!-- Service Selection -->
+            <!-- Treatment Category Dropdown -->
             <div class="booking-field-group">
               <label for="serviceSelect">Select Treatment <span class="required">*</span></label>
               <select id="serviceSelect" name="serviceSelect" required>
                 <option value="" disabled selected>-- Select a Shedaby Treatment --</option>
                 
                 <optgroup label="Massages (In-Spa)">
-                  <option value="swedish">Swedish Massage ₦25,000</option>
-                  <option value="deep-tissue">Deep Tissue Massage ₦30,000</option>
-                  <option value="aromatherapy">Aromatherapy Massage ₦25,000</option>
-                  <option value="hot-stone">Hot Stone Massage ₦35,000</option>
+                  <option value="deep-tissue">Deep Tissue Massage — ₦30,000</option>
+                  <option value="swedish">Swedish Massage — ₦25,000</option>
+                  <option value="aromatherapy">Aromatherapy Massage — ₦25,000</option>
+                  <option value="hot-stone">Hot Stone Massage — ₦35,000</option>
                 </optgroup>
 
-                <optgroup label="Reflexology & Targeted Massages">
-                  <option value="back-massage">Back Massage ₦15,000</option>
-                  <option value="leg-massage">Leg Massage ₦7,000</option>
-                  <option value="head-massage">Head Massage (Scalp & Neck) ₦8,000</option>
+                <optgroup label="Reflexology Massage">
+                  <option value="back-massage">Back Massage — ₦15,000</option>
+                  <option value="leg-massage">Leg Massage — ₦7,000</option>
+                  <option value="head-massage">Head Massage — ₦8,000</option>
                 </optgroup>
 
-                <optgroup label="Couple Massages">
-                  <option value="couple-swedish">Couple Swedish Massage ₦45,000</option>
-                  <option value="couple-aroma">Couple Aromatherapy Massage ₦45,000</option>
-                  <option value="couple-hotstone">Couple Hot Stone Massage ₦50,000</option>
-                  <option value="couple-deeptissue">Couple Deep Tissue Massage ₦50,000</option>
+                <optgroup label="Couple Massage">
+                  <option value="couple-swedish">Couple Swedish Massage — ₦45,000</option>
+                  <option value="couple-aroma">Couple Aromatherapy Massage — ₦45,000</option>
+                  <option value="couple-hotstone">Couple Hot Stone Massage — ₦50,000</option>
+                  <option value="couple-deeptissue">Couple Deep Tissue Massage — ₦50,000</option>
                 </optgroup>
 
-                <optgroup label="VIP Massages">
-                  <option value="four-hands">Four Hands Massage (2 Therapists) ₦45,000</option>
-                  <option value="erotic">Erotic Massage ₦50,000</option>
-                  <option value="nuru">Nuru Massage (Japanese Style) ₦60,000</option>
+                <optgroup label="VIP Massage">
+                  <option value="four-hands">Four Hands Massage (2 Therapists) — ₦45,000</option>
+                  <option value="erotic">Erotic Massage — ₦50,000</option>
+                  <option value="nuru">Nuru Massage — ₦60,000</option>
                 </optgroup>
 
-                <optgroup label="Home / Office Outcall Massages">
-                  <option value="outcall-swedish">Home/Office Swedish Massage ₦50,000</option>
-                  <option value="outcall-deeptissue">Home/Office Deep Tissue Massage ₦50,000</option>
-                  <option value="outcall-aroma">Home/Office Aromatherapy ₦50,000</option>
-                  <option value="outcall-hotstone">Home/Office Hot Stone ₦50,000</option>
-                  <option value="outcall-erotic">Home/Office Erotic Massage ₦70,000</option>
-                  <option value="outcall-nuru">Home/Office Nuru Massage ₦80,000</option>
+                <optgroup label="Home / Office Massage">
+                  <option value="outcall-deeptissue">Home/Office Deep Tissue — ₦50,000</option>
+                  <option value="outcall-swedish">Home/Office Swedish — ₦50,000</option>
+                  <option value="outcall-aroma">Home/Office Aromatherapy — ₦50,000</option>
+                  <option value="outcall-hotstone">Home/Office Hot Stone — ₦50,000</option>
+                  <option value="outcall-erotic">Home/Office Erotic Massage — ₦70,000</option>
+                  <option value="outcall-nuru">Home/Office Nuru Massage — ₦80,000</option>
                 </optgroup>
 
                 <optgroup label="Facials">
-                  <option value="regular-facial">Regular Facial ₦25,000</option>
-                  <option value="organic-facial">Organic Facial ₦30,000</option>
-                  <option value="acne-facial">Acne Facial ₦35,000</option>
-                  <option value="dermaplaning">Dermaplaning ₦35,000</option>
-                  <option value="led-facial">LED Facial ₦35,000</option>
-                  <option value="anti-aging-facial">Anti-Aging Facial ₦40,000</option>
+                  <option value="regular-facial">Regular Facial — ₦25,000</option>
+                  <option value="organic-facial">Organic Facial — ₦30,000</option>
+                  <option value="acne-facial">Acne Facial — ₦35,000</option>
+                  <option value="dermaplaning">Dermaplaning — ₦35,000</option>
+                  <option value="led-facial">LED Facial — ₦35,000</option>
+                  <option value="anti-aging-facial">Anti-Aging Facial — ₦40,000</option>
                 </optgroup>
 
-                <optgroup label="Body Scrub, Steam & Sauna">
-                  <option value="organic-scrub">Organic Scrub ₦30,000</option>
-                  <option value="sugar-scrub">Sugar Scrub ₦35,000</option>
-                  <option value="sauna">Sauna Detox ₦8,000</option>
-                  <option value="body-steam">Body Steam ₦8,000</option>
-                  <option value="v-steam">V Steam ₦10,000</option>
+                <optgroup label="Body Scrub / Polish & Steam">
+                  <option value="organic-scrub">Organic Scrub — ₦30,000</option>
+                  <option value="sugar-scrub">Sugar Scrub — ₦35,000</option>
+                  <option value="coffee-scrub">Coffee Scrub — ₦1,000</option>
+                  <option value="sauna">Sauna Detox — ₦8,000</option>
+                  <option value="body-steam">Body Steam — ₦8,000</option>
+                  <option value="v-steam">V Steam — ₦10,000</option>
                 </optgroup>
 
                 <optgroup label="Body Sculpting">
-                  <option value="belly-fat">Belly Fat Reduction ₦30,000</option>
-                  <option value="butt-lift">Butt Lift ₦30,000</option>
-                  <option value="breast-enhancement">Breast Enhancement ₦20,000</option>
-                  <option value="arm-fat">Arm Fat Reduction ₦15,000</option>
+                  <option value="belly-fat">Belly Fat Reduction — ₦30,000</option>
+                  <option value="butt-lift">Butt Lift — ₦30,000</option>
+                  <option value="breast-enhancement">Breast Enhancement — ₦20,000</option>
+                  <option value="arm-fat">Arm Fat Reduction — ₦15,000</option>
                 </optgroup>
 
                 <optgroup label="Waxing">
-                  <option value="full-body-wax">Full Body Wax ₦45,000</option>
-                  <option value="brazilian-wax">Brazilian Wax ₦20,000</option>
-                  <option value="bikini-wax">Bikini Line Wax ₦15,000</option>
-                  <option value="full-legs-wax">Full Legs Wax ₦18,000</option>
-                  <option value="underarms-wax">Underarms Wax ₦8,000</option>
-                  <option value="chin-wax">Chin Wax ₦7,000</option>
+                  <option value="full-body-wax">Full Body Wax — ₦45,000</option>
+                  <option value="chin-wax">Chin Wax — ₦7,000</option>
+                  <option value="full-legs-wax">Full Legs Wax — ₦18,000</option>
+                  <option value="underarms-wax">Underarms Wax — ₦8,000</option>
+                  <option value="bikini-wax">Bikini Line Wax — ₦15,000</option>
+                  <option value="brazilian-wax">Brazilian Wax — ₦20,000</option>
                 </optgroup>
 
-                <optgroup label="Hands & Feet Treatment">
-                  <option value="pedi-mani-combo">Pedicure & Manicure Combo ₦30,000</option>
-                  <option value="pedicure">Pedicure ₦8,000</option>
-                  <option value="manicure">Manicure ₦5,000</option>
-                  <option value="foot-detox">Foot Detox ₦8,000</option>
-                  <option value="gel-pedicure">Gel Polish Add-on ₦3,000</option>
+                <optgroup label="Foot & Hand Treatment">
+                  <option value="pedicure">Pedicure — ₦8,000</option>
+                  <option value="gel-pedicure">Gel Pedicure — ₦3,000</option>
+                  <option value="manicure">Manicure — ₦5,000</option>
+                  <option value="foot-detox">Foot Detox — ₦8,000</option>
+                  <option value="cutting-nails">Cutting Nails (Hand & Leg) — ₦5,000</option>
+                  <option value="pedi-mani-combo">Pedicure & Manicure Combo — ₦30,000</option>
                 </optgroup>
 
-                <optgroup label="Laser & Semi-Permanent Beauty">
-                  <option value="teeth-whitening">Teeth Whitening ₦25,000</option>
-                  <option value="scaling-polishing">Scaling & Polishing ₦30,000</option>
-                  <option value="microblading">Microblading Brows ₦30,000</option>
-                  <option value="ombre-shading">Ombré Shading ₦35,000</option>
-                  <option value="classic-lash">Classic Lashes ₦12,000</option>
-                  <option value="hybrid-lash">Hybrid Lashes ₦15,000</option>
-                  <option value="volume-lash">Volume Lashes ₦20,000</option>
+                <optgroup label="Semi-Permanent Lash">
+                  <option value="classic-lash">Classic Lash — ₦12,000</option>
+                  <option value="hybrid-lash">Hybrid Lash — ₦15,000</option>
+                  <option value="volume-lash">Volume Lash — ₦20,000</option>
+                  <option value="mega-volume-lash">Mega Volume Lash — ₦25,000</option>
+                </optgroup>
+
+                <optgroup label="Laser & Semi-Permanent Brow">
+                  <option value="teeth-whitening">Teeth Whitening — ₦25,000</option>
+                  <option value="scaling-polishing">Scaling & Polishing — ₦30,000</option>
+                  <option value="tag-remover">Tag Remover — ₦18,000</option>
+                  <option value="microblading">Microblading Brow — ₦30,000</option>
+                  <option value="ombre-shading">Ombré Shading Brow — ₦35,000</option>
+                  <option value="brow-combo">Combo Brow (Microblading + Shading) — ₦40,000</option>
                 </optgroup>
               </select>
               <span class="error-msg" id="serviceError"></span>
@@ -658,60 +839,97 @@
               <span class="error-msg" id="timeError"></span>
             </div>
 
-            <!-- Brochure Estimated Price -->
+            <!-- Estimated Price -->
             <div class="price-banner-box">
               <span class="price-banner-label">Brochure Rate:</span>
               <span class="price-banner-value" id="computedPrice">Please select service & option</span>
             </div>
 
-            <!-- Special Requests / Focus Notes -->
+            <!-- Special Requests -->
             <div class="booking-field-group full-width">
               <label for="specialRequests">Focus Areas / Outcall Address (Optional)</label>
-              <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="State any specific areas of muscle stiffness, pressure preferences, or your residential/office location if booking an Outcall session..."></textarea>
+              <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="State muscle focus areas, pressure preferences, or residential outcall address..."></textarea>
             </div>
 
             <!-- Terms Checkbox -->
             <div class="terms-row">
               <input type="checkbox" id="termsCheck" name="termsCheck" required>
               <label for="termsCheck">
-                I agree to Shedaby Spa appointment scheduling policies and hygiene guidelines[cite: 8].
+                I agree to Shedaby Spa appointment scheduling policies and hygiene guidelines[cite: 3].
               </label>
             </div>
             <div class="error-msg" id="termsError" style="grid-column: 1 / -1;"></div>
+
+            <!-- Payment Details Block -->
+            <div class="booking-field-group full-width">
+              <div class="pay-account">
+                <div class="pay-row"><span>Account Name</span><strong>Shedaby World Limited</strong></div>
+                <div class="pay-row"><span>Account Number</span><strong class="pay-acct-num" id="payAcctNum">1016651440</strong></div>
+                <div class="pay-row"><span>Bank</span><strong>Zenith Bank</strong></div>
+              </div>
+              <button type="button" class="pay-copy" id="payCopyBtn">📋 Copy Account Number</button>
+
+              <fieldset class="pay-options">
+                <legend>Payment Option <span class="required">*</span></legend>
+
+                <label class="pay-option" for="payOptPaid">
+                  <input type="radio" id="payOptPaid" name="payOption" value="paid">
+                  <span class="pay-radio-circle">
+                    <span class="pay-radio-check">✓</span>
+                  </span>
+                  <span class="pay-option-content">
+                    <strong>I have made the payment</strong>
+                    <small>Direct transfer completed to Zenith Bank (our team will verify your transfer).</small>
+                  </span>
+                </label>
+
+                <label class="pay-option" for="payOptSpa">
+                  <input type="radio" id="payOptSpa" name="payOption" value="pay-at-spa">
+                  <span class="pay-radio-circle">
+                    <span class="pay-radio-check">✓</span>
+                  </span>
+                  <span class="pay-option-content">
+                    <strong>I will pay at the spa</strong>
+                    <small>Settlement by card POS, cash, or transfer on arrival at our spa.</small>
+                  </span>
+                </label>
+              </fieldset>
+              <div class="error-msg" id="payError"></div>
+            </div>
 
             <!-- Submit Button -->
             <div class="submit-container">
               <button type="submit" class="btn btn-gold" id="submitBtn">
                 <span>Confirm Shedaby Reservation</span>
               </button>
-              <p class="submit-helper-note">Instant booking synchronization directly to our concierge team[cite: 8].</p>
+              <p class="submit-helper-note">Instant booking synchronization directly to our concierge team[cite: 3].</p>
             </div>
 
           </div>
         </form>
       </div>
 
-      <!-- Trust & Amenities Row -->
+      <!-- Trust Amenities -->
       <div class="booking-perks-row">
         <div class="perk-box">
           <div class="perk-icon">🧖‍♀️</div>
           <div class="perk-text">
             <h4>Luxury Amenities</h4>
-            <p>Sauna, steam room & relaxation lounge[cite: 8].</p>
+            <p>Sauna, steam room & relaxation lounge[cite: 3].</p>
           </div>
         </div>
         <div class="perk-box">
           <div class="perk-icon">🌿</div>
           <div class="perk-text">
             <h4>Quality Products</h4>
-            <p>Organic botanicals & fine clinical extracts[cite: 8].</p>
+            <p>Organic botanicals & fine clinical extracts[cite: 3].</p>
           </div>
         </div>
         <div class="perk-box">
           <div class="perk-icon">🚗</div>
           <div class="perk-text">
             <h4>Outcall Available</h4>
-            <p>Direct therapy at your home or office[cite: 8].</p>
+            <p>Direct therapy at your home or office[cite: 3].</p>
           </div>
         </div>
       </div>
@@ -728,43 +946,43 @@
           <span class="brand-title">SHEDABY SPA</span>
         </div>
         <p class="footer-about">
-          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa[cite: 8]. Where luxury meets relaxation[cite: 8].
+          Indulge in a celestial journey of relaxation and rejuvenation at Shedaby Spa[cite: 3]. Where luxury meets relaxation[cite: 3].
         </p>
       </div>
 
       <div class="footer-col">
         <h4 class="footer-title">Quick Links</h4>
         <ul class="footer-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Our Oasis</a></li>
-          <li><a href="price.html">Price List</a></li>
-          <li><a href="appointment.html">Book Appointment</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="./">Home</a></li>
+          <li><a href="about">About Our Oasis</a></li>
+          <li><a href="price">Price List</a></li>
+          <li><a href="appointment">Book Appointment</a></li>
+          <li><a href="contact">Contact Us</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4 class="footer-title">Brochure Highlights</h4>
         <ul class="footer-links">
-          <li><a href="price.html">Deep Tissue Massage</a></li>
-          <li><a href="price.html">Couple Massage</a></li>
-          <li><a href="price.html">VIP Four Hands & Nuru</a></li>
-          <li><a href="price.html">Home / Office Outcall</a></li>
-          <li><a href="price.html">Pedicure & Manicure Combo</a></li>
+          <li><a href="price">Deep Tissue Massage</a></li>
+          <li><a href="price">Couple Massage</a></li>
+          <li><a href="price">VIP Four Hands & Nuru</a></li>
+          <li><a href="price">Home / Office Outcall</a></li>
+          <li><a href="price">Pedicure & Manicure Combo</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4 class="footer-title">Visit Shedaby Spa</h4>
-        <p class="footer-contact-line">10 Ikegwuru Street Off Mummy B Road, Port Harcourt[cite: 8]</p>
-        <p class="footer-contact-line"><strong>Tel:</strong> 08174605032 / 08139570302[cite: 8]</p>
-        <p class="footer-contact-line"><strong>Email:</strong> info@shedabyspa.com[cite: 8]</p>
-        <p class="footer-contact-line"><strong>Web:</strong> www.shedabyspa.com[cite: 8]</p>
+        <p class="footer-contact-line">10 Ikegwuru Street Off Mummy B Road, Port Harcourt[cite: 3]</p>
+        <p class="footer-contact-line"><strong>Tel:</strong> 08174605032 / 08139570302[cite: 3]</p>
+        <p class="footer-contact-line"><strong>Email:</strong> info@shedabyspa.com[cite: 3]</p>
+        <p class="footer-contact-line"><strong>Web:</strong> www.shedabyspa.com[cite: 3]</p>
       </div>
     </div>
 
     <div class="footer-bottom container">
-      <p>&copy; <span id="currentYear">2026</span> Shedaby Spa (...the beauty galaxy)[cite: 8]. All Rights Reserved.</p>
+      <p>&copy; <span id="currentYear">2026</span> Shedaby Spa (...the beauty galaxy)[cite: 3]. All Rights Reserved.</p>
     </div>
   </footer>
 

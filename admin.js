@@ -132,7 +132,7 @@ function subscribeToAppointments() {
     console.error('Error streaming appointments:', error);
     appointmentsTableBody.innerHTML = `
       <tr>
-        <td colspan="7" class="empty-state">
+        <td colspan="8" class="empty-state">
           Firestore Permission Error. Verify you are authenticated.
         </td>
       </tr>
@@ -167,27 +167,29 @@ function renderMetrics(data) {
 }
 
 // ==========================================
-// 4. RENDER TABLE (SHOWING CONFIRMED VS PENDING)
+// 4. RENDER TABLE WITH PAYMENT OPTION COLUMN
 // ==========================================
 function renderTable() {
   const queryTerm = searchInput.value.toLowerCase().trim();
 
   const filtered = appointmentsCache.filter(apt => {
-    const refCode = apt.id.slice(0, 7).toLowerCase();
+    const refCode = (apt.id || '').slice(0, 7).toLowerCase();
     const name = (apt.clientName || '').toLowerCase();
     const phone = (apt.phone || '').toLowerCase();
     const email = (apt.email || '').toLowerCase();
+    const payment = (apt.paymentOption || apt.paymentLabel || '').toLowerCase();
 
     return name.includes(queryTerm) || 
            phone.includes(queryTerm) || 
            email.includes(queryTerm) || 
-           refCode.includes(queryTerm);
+           refCode.includes(queryTerm) ||
+           payment.includes(queryTerm);
   });
 
   if (filtered.length === 0) {
     appointmentsTableBody.innerHTML = `
       <tr>
-        <td colspan="7" class="empty-state">No appointments found.</td>
+        <td colspan="8" class="empty-state">No appointments found.</td>
       </tr>
     `;
     return;
@@ -217,6 +219,9 @@ function renderTable() {
           <strong>${escapeHtml(apt.estimatedPrice || '₦0')}</strong>
         </td>
         <td>
+          ${paymentBadge(apt)}
+        </td>
+        <td>
           ${isConfirmed 
             ? '<span class="badge-status confirmed">✓ Confirmed</span>' 
             : '<span class="badge-status pending">⏳ Pending</span>'}
@@ -235,7 +240,7 @@ function renderTable() {
 }
 
 // ==========================================
-// 5. MODAL & ONE-CLICK EMAIL COPY & CONFIRM
+// 5. MODAL VIEWER & EMAIL NOTIFICATION COPY
 // ==========================================
 function attachRowListeners() {
   document.querySelectorAll('.view-btn').forEach(btn => {
@@ -250,12 +255,16 @@ function attachRowListeners() {
 
       modalBody.innerHTML = `
         <div class="detail-row">
-          <span>Current Status:</span>
-          <strong>${apt.status === 'confirmed' ? '<span style="color:#2e8b57;">Confirmed</span>' : '<span style="color:#d97706;">Pending Confirmation</span>'}</strong>
-        </div>
-        <div class="detail-row">
           <span>Booking Reference:</span>
           <strong>#${apt.id.slice(0, 7).toUpperCase()}</strong>
+        </div>
+        <div class="detail-row">
+          <span>Current Status:</span>
+          <strong>${apt.status === 'confirmed' ? '<span style="color:#2e8b57; font-weight:700;">Confirmed</span>' : '<span style="color:#d97706; font-weight:700;">Pending Confirmation</span>'}</strong>
+        </div>
+        <div class="detail-row">
+          <span>Selected Payment Option:</span>
+          <div>${paymentBadge(apt)}</div>
         </div>
         <div class="detail-row">
           <span>Guest Name:</span>
@@ -287,10 +296,10 @@ function attachRowListeners() {
         </div>
         <div class="detail-row">
           <span>Estimated Fee:</span>
-          <strong>${escapeHtml(apt.estimatedPrice || '₦0')}</strong>
+          <strong style="color:var(--color-gold); font-size:1.05rem;">${escapeHtml(apt.estimatedPrice || '₦0')}</strong>
         </div>
         <div>
-          <label style="font-size:0.8rem; font-weight:600; display:block; margin-bottom:6px;">Special Requests / Focus Areas:</label>
+          <label style="font-size:0.8rem; font-weight:600; display:block; margin-bottom:6px;">Special Requests / Outcall Address:</label>
           <div class="special-req-box">${escapeHtml(apt.specialRequests || 'No special requests submitted.')}</div>
         </div>
       `;
@@ -321,10 +330,14 @@ modalCopyBtn.addEventListener('click', async () => {
   const apt = currentViewingAppointment;
   const ref = apt.id.slice(0, 7).toUpperCase();
 
+  const paymentText = (apt.paymentOption === 'paid' || apt.paymentStatus === 'paid_claimed')
+    ? 'Bank Transfer (Verified)'
+    : 'Pay at Spa upon arrival (Cash / Card POS / Transfer)';
+
   const confirmationEmailText = 
 `Dear ${apt.clientName || 'Valued Guest'},
 
-Your appointment has been confirmed by the admin at Shedaby Spa (...the beauty galaxy).
+Your appointment has been confirmed by the concierge team at Shedaby Spa (...the beauty galaxy).
 
 Here are your confirmed reservation details:
 - Booking Reference: #${ref}
@@ -333,6 +346,7 @@ Here are your confirmed reservation details:
 - Date & Time: ${apt.date || 'Scheduled Date'} at ${apt.timeSlot || 'Scheduled Time'}
 - Party Size: ${apt.guests || '1 Guest'}
 - Total Fee: ${apt.estimatedPrice || '₦0'}
+- Payment Mode: ${paymentText}
 - Location: 10 Ikegwuru Street Off Mummy B Road, Port Harcourt
 
 If you have any questions or need to reschedule, please contact us on 08174605032 or 08139570302.
@@ -343,10 +357,8 @@ Warm regards,
 Shedaby Spa Concierge Desk`;
 
   try {
-    // 1. Copy formatted text to clipboard
     await navigator.clipboard.writeText(confirmationEmailText);
 
-    // 2. Automatically update status in Firestore to confirmed
     await updateDoc(doc(db, 'appointments', apt.id), {
       status: 'confirmed'
     });
@@ -376,6 +388,31 @@ window.addEventListener('click', (e) => {
 });
 
 searchInput.addEventListener('input', renderTable);
+
+// Crisp, readable badges indicating payment selection on Admin
+function paymentBadge(apt) {
+  const isPaid = apt.paymentOption === 'paid' || apt.paymentStatus === 'paid_claimed';
+  const isSpa = apt.paymentOption === 'pay-at-spa' || apt.paymentStatus === 'pay_at_spa';
+
+  if (isPaid) {
+    return `
+      <span style="display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; background:#e6f8ec; color:#146c36; border:1px solid #a3e6b7; white-space:nowrap;">
+        💳 Paid (Verify Transfer)
+      </span>
+    `;
+  } else if (isSpa) {
+    return `
+      <span style="display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; background:#fff7e6; color:#9a5b03; border:1px solid #ffd591; white-space:nowrap;">
+        🏢 Pay at Spa
+      </span>
+    `;
+  }
+  return `
+    <span style="display:inline-block; padding:4px 8px; border-radius:6px; font-size:0.72rem; font-weight:600; background:#eee; color:#666; white-space:nowrap;">
+      Not Specified
+    </span>
+  `;
+}
 
 function escapeHtml(text) {
   const map = {

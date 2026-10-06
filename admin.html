@@ -6,11 +6,12 @@
   <title>Shedaby Spa Concierge & Admin Dashboard</title>
   <meta name="robots" content="noindex, nofollow">
   
-<!-- Standard Favicon -->
-<link rel="icon" type="image/png" href="logo.png">
+  <!-- Standard Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
 
-<!-- Apple Touch Icon for Mobile / PWA -->
-<link rel="apple-touch-icon" href="logo.png">  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Apple Touch Icon for Mobile / PWA -->
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
@@ -111,7 +112,7 @@
 
           <div class="table-actions">
             <div class="search-input-wrap">
-              <input type="text" id="searchInput" placeholder="Search by name, phone, or ref...">
+              <input type="text" id="searchInput" placeholder="Search by name, phone, ref, or payment...">
             </div>
           </div>
         </div>
@@ -125,13 +126,14 @@
                 <th>Treatment & Duration</th>
                 <th>Date & Time</th>
                 <th>Price</th>
+                <th>Payment Option</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody id="appointmentsTableBody">
               <tr>
-                <td colspan="7" class="loading-state">
+                <td colspan="8" class="loading-state">
                   <div class="spinner"></div>
                   <p>Connecting to secure Firestore stream...</p>
                 </td>
